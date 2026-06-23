@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diana Rafael — Autonomous Growth Engine · Master Blueprint</title>
+<title>Diana Rafael — Autonomous Growth Engine · Master Doc</title>
 <style>
   :root{
     --ink:#0d0d0f; --ink2:#1c1c20; --gold:#b8924a; --gold-soft:#e8d7b0;
@@ -14,619 +14,526 @@
   body{margin:0;background:var(--cream);color:var(--ink);
     font-family:"Segoe UI",Arial,sans-serif;line-height:1.55;}
   h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:.2px;}
-  .wrap{max-width:1180px;margin:0 auto;padding:32px 28px 80px;}
-  header.hero{background:var(--ink);color:var(--cream);border-radius:14px;
-    padding:32px 36px;margin-bottom:26px;border:1px solid #000;}
-  header.hero h1{margin:0 0 6px;font-size:31px;color:#fff;}
-  header.hero .sub{color:var(--gold-soft);font-size:15px;max-width:760px;}
-  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
-  .pill{background:rgba(184,146,74,.16);border:1px solid var(--gold);
-    color:var(--gold-soft);padding:4px 12px;border-radius:999px;font-size:12.5px;}
-  /* TOC */
-  .toc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:30px;}
-  .toc h4{margin:0 0 10px;font-family:Georgia,serif;font-size:14px;color:var(--gold);}
-  .toc ol{margin:0;padding-inline-start:20px;columns:2;column-gap:34px;font-size:13.5px;}
-  .toc a{color:var(--ink2);text-decoration:none;} .toc a:hover{color:var(--gold);text-decoration:underline;}
-  section{margin:40px 0;scroll-margin-top:14px;}
-  h2.sec{font-size:22px;border-bottom:2px solid var(--gold);padding-bottom:7px;
-    margin-bottom:18px;display:flex;align-items:center;gap:10px;}
-  h2.sec .n{background:var(--ink);color:var(--gold-soft);width:28px;height:28px;
-    border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
-    font-size:14px;font-family:Georgia,serif;flex:none;}
-  h3.sub{font-size:16px;margin:22px 0 8px;color:var(--ink);}
+  a{color:inherit;}
+  /* LAYOUT */
+  .layout{display:flex;align-items:flex-start;}
+  .sidebar{position:sticky;top:0;width:236px;flex:none;height:100vh;overflow-y:auto;
+    background:var(--ink);color:var(--cream);padding:16px 0 40px;}
+  .sidebar .brand{padding:6px 18px 14px;border-bottom:1px solid #2c2c33;margin-bottom:8px;}
+  .sidebar .brand b{font-family:Georgia,serif;color:#fff;font-size:15px;display:block;}
+  .sidebar .brand span{font-size:11px;color:var(--gold-soft);}
+  .sidebar .grp{font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--gold);
+    padding:14px 18px 4px;font-weight:700;}
+  .sidebar a.nav{display:block;padding:7px 18px;color:#cfc9bd;text-decoration:none;font-size:13.3px;
+    border-inline-start:3px solid transparent;cursor:pointer;}
+  .sidebar a.nav:hover{background:rgba(255,255,255,.05);color:#fff;}
+  .sidebar a.nav.active{background:rgba(184,146,74,.16);color:#fff;border-inline-start-color:var(--gold);}
+  .sidebar a.nav .st{float:left;font-size:10px;opacity:.7;}
+  .main{flex:1;min-width:0;padding:30px 38px 90px;max-width:1000px;margin:0 auto;}
+  .panel{display:none;} .panel.active{display:block;animation:fade .2s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+  /* HEADINGS */
+  h2.sec{font-size:23px;border-bottom:2px solid var(--gold);padding-bottom:8px;margin:0 0 18px;
+    display:flex;align-items:center;gap:10px;}
+  h3.sub{font-size:16px;margin:24px 0 8px;color:var(--ink);}
   .note{font-size:13px;color:var(--muted);}
   p.lead{font-size:14.5px;}
-  /* VISION BANNER */
+  .crumbs{font-size:11.5px;color:var(--muted);margin-bottom:6px;}
+  .status-tag{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:2px 9px;margin-inline-start:8px;vertical-align:middle;}
+  .s-locked{background:#e7f1ea;color:var(--have);border:1px solid var(--have);}
+  .s-spec{background:#fff7e6;color:var(--warn);border:1px solid var(--gold);}
+  .s-todo{background:#eee;color:#777;border:1px solid #ccc;}
+  /* VISION */
   .vision{background:linear-gradient(135deg,#1c1c20,#2b2b32);color:var(--cream);
     border:1px solid var(--gold);border-radius:14px;padding:24px 28px;}
   .vision .big{font-family:Georgia,serif;font-size:20px;color:#fff;margin:0 0 8px;}
   .vision .big b{color:var(--gold-soft);}
   .vision p{font-size:14px;color:#d8d2c5;margin:6px 0 0;}
   .goals{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;}
-  .goal{background:rgba(184,146,74,.12);border:1px solid var(--gold);border-radius:10px;
-    padding:10px 14px;flex:1;min-width:220px;}
+  .goal{background:rgba(184,146,74,.12);border:1px solid var(--gold);border-radius:10px;padding:10px 14px;flex:1;min-width:200px;}
   .goal b{color:var(--gold-soft);font-family:Georgia,serif;}
-  /* GENERIC GRID + CARDS */
+  /* GRID + CARDS */
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
-  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;}
   .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 17px;}
   .card h3{margin:0 0 6px;font-size:15px;color:var(--ink);}
   .card .role{font-size:13px;color:var(--muted);}
-  .tag{display:inline-block;font-size:11.5px;background:var(--ink);color:var(--gold-soft);
-    border-radius:6px;padding:2px 8px;margin-top:8px;}
-  /* ARCHITECTURE LAYERS */
-  .arch{display:flex;flex-direction:column;gap:10px;}
-  .layer{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;
-    border-right:5px solid var(--gold);}
+  .tag{display:inline-block;font-size:11.5px;background:var(--ink);color:var(--gold-soft);border-radius:6px;padding:2px 8px;margin-top:8px;}
+  ul.clean{margin:6px 0 0;padding-inline-start:18px;font-size:13px;} ul.clean li{margin:4px 0;}
+  /* ARCH LAYERS */
+  .arch{display:flex;flex-direction:column;gap:9px;}
+  .layer{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 17px;border-right:5px solid var(--gold);}
   .layer .lh{font-weight:700;font-size:15px;font-family:Georgia,serif;}
   .layer .ld{font-size:13px;color:var(--ink2);margin-top:3px;}
-  .agents{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:6px;}
-  .agent{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;border-top:4px solid var(--blue);}
-  .agent h3{margin:0 0 5px;font-size:15px;}
-  .agent ul{margin:7px 0 0;padding-inline-start:18px;font-size:12.8px;color:var(--ink2);}
-  .agent li{margin:3px 0;}
-  /* FUNNEL STAGES (detailed) */
-  .stages{display:flex;flex-direction:column;gap:14px;}
-  .pstage{background:#fff;border:1px solid var(--line);border-radius:13px;padding:0;overflow:hidden;
-    box-shadow:0 1px 3px rgba(0,0,0,.04);}
-  .pstage .bar{display:flex;align-items:center;gap:12px;background:var(--ink);color:#fff;padding:11px 18px;}
-  .pstage .bar .idx{background:var(--gold);color:#1c1c20;width:30px;height:30px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;font-weight:700;font-family:Georgia,serif;flex:none;}
-  .pstage .bar .ttl{font-family:Georgia,serif;font-size:17px;}
-  .pstage .bar .kpi{margin-inline-start:auto;font-size:12px;background:rgba(184,146,74,.2);
-    border:1px solid var(--gold);color:var(--gold-soft);padding:3px 10px;border-radius:999px;white-space:nowrap;}
-  .pstage .body{padding:14px 20px 16px;}
-  .pstage .goal-line{font-size:13.5px;color:var(--ink2);margin:0 0 12px;}
+  /* MODULE TABLE */
+  table.mods{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:10px;overflow:hidden;border:1px solid var(--line);}
+  table.mods th{background:var(--ink);color:var(--gold-soft);text-align:right;padding:9px 12px;font-family:Georgia,serif;font-size:12.5px;}
+  table.mods td{padding:9px 12px;border-top:1px solid var(--line);vertical-align:top;}
+  table.mods tr:nth-child(even) td{background:#fbfaf7;}
+  table.mods .m{font-weight:700;white-space:nowrap;}
+  /* SPEC BLOCKS */
+  .specgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:10px;}
+  .spec{background:#fff;border:1px solid var(--line);border-radius:11px;padding:14px 16px;border-top:4px solid var(--blue);}
+  .spec h4{margin:0 0 6px;font-size:13px;color:var(--blue);text-transform:uppercase;letter-spacing:.4px;}
+  .spec ul{margin:0;padding-inline-start:17px;font-size:12.8px;} .spec li{margin:3px 0;}
+  .callout{background:#fff7e6;border:1px dashed var(--gold);border-radius:10px;padding:12px 16px;font-size:13px;color:#5a4a26;margin:10px 0;}
+  .msg{background:#fff;border:1px solid var(--line);border-inline-start:4px solid var(--gold);border-radius:8px;padding:9px 14px;font-size:13px;margin:7px 0;font-style:italic;}
+  .pill2{display:inline-block;background:var(--cream);border:1px solid var(--line);border-radius:7px;padding:2px 9px;font-size:12px;margin:3px 4px 0 0;}
+  /* FUNNEL stages */
+  .pstage{background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;margin-bottom:12px;}
+  .pstage .bar{display:flex;align-items:center;gap:12px;background:var(--ink);color:#fff;padding:10px 16px;}
+  .pstage .bar .idx{background:var(--gold);color:#1c1c20;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:Georgia,serif;flex:none;}
+  .pstage .bar .ttl{font-family:Georgia,serif;font-size:16px;}
+  .pstage .bar .kpi{margin-inline-start:auto;font-size:12px;background:rgba(184,146,74,.2);border:1px solid var(--gold);color:var(--gold-soft);padding:3px 10px;border-radius:999px;white-space:nowrap;}
+  .pstage .body{padding:13px 18px 15px;}
+  .pstage .goal-line{font-size:13.3px;color:var(--ink2);margin:0;}
   .pstage .goal-line b{color:var(--warn);}
-  .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-  @media(max-width:680px){.cols{grid-template-columns:1fr;}}
-  .colh{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin:0 0 6px;color:var(--muted);}
-  .pstage ul{margin:0;padding-inline-start:18px;font-size:13px;}
-  .pstage li{margin:4px 0;}
-  .have-box ul li::marker{color:var(--have);}
-  .build-box ul li::marker{color:var(--build);}
-  .badge{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:1px 7px;margin-inline-start:6px;vertical-align:middle;}
-  .b-have{background:#e7f1ea;color:var(--have);border:1px solid var(--have);}
-  .b-build{background:#fbeede;color:var(--build);border:1px solid var(--build);}
-  .b-part{background:#fff7e6;color:var(--warn);border:1px solid var(--gold);}
-  /* FEATURE STRIP */
-  .feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:13px;}
-  .feat .f{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;position:relative;}
-  .feat .f .ic{font-size:20px;}
-  .feat .f h3{margin:6px 0 5px;font-size:14.5px;}
-  .feat .f p{margin:0;font-size:12.8px;color:var(--ink2);}
-  /* CONNECTORS STATUS */
-  .conn{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;}
-  .conn .c{background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 15px;display:flex;gap:11px;align-items:flex-start;}
+  /* CONNECTORS */
+  .conn{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:11px;}
+  .conn .c{background:#fff;border:1px solid var(--line);border-radius:11px;padding:11px 14px;display:flex;gap:11px;align-items:flex-start;}
   .dot{width:11px;height:11px;border-radius:50%;margin-top:5px;flex:none;}
   .d-live{background:var(--ok);} .d-part{background:var(--gold);} .d-todo{background:#bbb;}
-  .conn .c b{font-size:14px;} .conn .c .s{font-size:12px;color:var(--muted);display:block;margin-top:2px;}
-  /* GANTT (kept) */
+  .conn .c b{font-size:13.5px;} .conn .c .s{font-size:12px;color:var(--muted);display:block;margin-top:2px;}
+  /* GANTT */
   .gantt{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;overflow-x:auto;}
-  .gtable{display:grid;grid-template-columns:180px repeat(7,1fr);min-width:820px;}
-  .gtable .head{position:sticky;top:0;font-weight:700;font-size:12.5px;text-align:center;
-    padding:9px 4px;background:var(--ink);color:var(--cream);}
+  .gtable{display:grid;grid-template-columns:170px repeat(7,1fr);min-width:780px;}
+  .gtable .head{font-weight:700;font-size:12px;text-align:center;padding:8px 4px;background:var(--ink);color:var(--cream);}
   .gtable .head.lbl{text-align:right;background:var(--ink2);}
-  .gtable .lane{font-size:13px;font-weight:600;padding:10px 10px;border-bottom:1px solid var(--line);
-    display:flex;align-items:center;background:#fbfaf7;}
-  .gcell{border-bottom:1px solid var(--line);border-right:1px solid #f0ece3;min-height:46px;
-    position:relative;padding:6px 5px;}
-  .bar2{border-radius:7px;font-size:11px;color:#fff;padding:5px 8px;height:100%;
-    display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;}
+  .gtable .lane{font-size:12.5px;font-weight:600;padding:9px;border-bottom:1px solid var(--line);display:flex;align-items:center;background:#fbfaf7;}
+  .gcell{border-bottom:1px solid var(--line);border-right:1px solid #f0ece3;min-height:44px;position:relative;padding:5px;}
+  .bar2{border-radius:6px;font-size:10.5px;color:#fff;padding:5px 7px;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;}
   .b-gold{background:linear-gradient(90deg,#b8924a,#9c7634);}
   .b-ink{background:linear-gradient(90deg,#33333a,#1c1c20);}
   .b-ok{background:linear-gradient(90deg,#4a8a5e,#3f7d52);}
   .b-warn{background:linear-gradient(90deg,#c47c39,#a85f23);}
   .b-soft{background:#efe6d2;color:#5a4a26;border:1px dashed var(--gold);}
   .play{background:#c0392b;color:#fff;font-size:10px;padding:2px 7px;border-radius:5px;font-weight:700;}
-  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;margin-top:12px;color:var(--muted);}
+  .legend{display:flex;flex-wrap:wrap;gap:13px;font-size:12px;margin-top:11px;color:var(--muted);}
   .legend span{display:inline-flex;align-items:center;gap:6px;}
-  .sw{width:16px;height:12px;border-radius:3px;display:inline-block;}
-  /* ROTATION */
+  .sw{width:15px;height:11px;border-radius:3px;display:inline-block;}
   .rot{display:flex;flex-wrap:wrap;gap:10px;}
-  .rot .step{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 15px;
-    flex:1;min-width:180px;}
+  .rot .step{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 15px;flex:1;min-width:170px;}
   .rot .step b{color:var(--gold);}
-  .ph{background:#fff7e6;border:1px dashed var(--gold);border-radius:9px;padding:11px 15px;
-    font-size:13px;color:var(--warn);}
-  .open{background:#fff;border:1px solid var(--line);border-inline-start:5px solid #c0392b;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:8px 0;}
-  .open b{color:#c0392b;}
-  footer{margin-top:50px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;}
+  .open{background:#fff;border:1px solid var(--line);border-inline-start:5px solid #c0392b;border-radius:10px;padding:11px 15px;font-size:13px;margin:7px 0;}
+  .ph{background:#fff7e6;border:1px dashed var(--gold);border-radius:9px;padding:11px 15px;font-size:13px;color:var(--warn);}
   code{background:#efe9dd;padding:1px 6px;border-radius:5px;font-size:12.5px;}
+  @media(max-width:760px){
+    .layout{flex-direction:column;}
+    .sidebar{position:static;width:100%;height:auto;display:flex;flex-wrap:wrap;gap:2px;}
+    .sidebar .grp{width:100%;} .main{padding:20px;}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="layout">
 
-<header class="hero">
-  <h1>Diana Rafael — Autonomous Growth Engine</h1>
-  <div class="sub">Master Blueprint · מסמך עבודה חי. סוכן <b>קידום · שיווק · שירות · מכירה</b> אוטונומי מקצה-לקצה למותגי איקומרס. מתחילים על Diana Rafael (יהלומים שחורים · AOV ~$1,850 · שוק ארה״ב) ושואפים למערכת גנרית לכל מותג תכשיטים.</div>
-  <div class="meta-row">
-    <span class="pill">v2 · עודכן 23.6.2026</span>
-    <span class="pill">מטרה: ↑CVR · ↓CPA/CPM</span>
-    <span class="pill">מדד-על: MER</span>
-    <span class="pill">6 connectors חיים</span>
-    <span class="pill">shadow-then-own</span>
-    <span class="pill">PLAY יעד: 1.7.2026</span>
-  </div>
-</header>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="brand"><b>Autonomous Growth Engine</b><span>Diana Rafael · Master Doc · v3</span></div>
 
-<!-- TOC -->
-<nav class="toc">
-  <h4>תוכן העניינים</h4>
-  <ol>
-    <li><a href="#vision">החזון והמטרה (North Star)</a></li>
-    <li><a href="#arch">ארכיטקטורה — מערכת רב-סוכנית</a></li>
-    <li><a href="#funnel">הפאנל המלא — 7 שלבים</a></li>
-    <li><a href="#content">מנוע התוכן</a></li>
-    <li><a href="#crm">כרטיס לקוח 360 + מעקב התנהגות</a></li>
-    <li><a href="#lead">Lead-Response — פתרון צוואר הבקבוק האנושי</a></li>
-    <li><a href="#email">מנוע אימייל ו-Flows</a></li>
-    <li><a href="#post">אחרי הרכישה — ליווי, שימור, הגדלה</a></li>
-    <li><a href="#channels">מפת ערוצים ותפקידים</a></li>
-    <li><a href="#features">פיצ'רים מייחדים</a></li>
-    <li><a href="#measure">מדידה ואמינות נתונים</a></li>
-    <li><a href="#gantt">גאנט שיווקי</a></li>
-    <li><a href="#news">רוטציית ניוזלטר</a></li>
-    <li><a href="#method">מתודולוגיית עבודה</a></li>
-    <li><a href="#conn">מצב החיבורים</a></li>
-    <li><a href="#next">החלטות פתוחות + מה הבא</a></li>
-  </ol>
-</nav>
+  <div class="grp">סקירה</div>
+  <a class="nav" data-t="vision">החזון (North Star)</a>
+  <a class="nav" data-t="arch">ארכיטקטורת-על</a>
 
-<!-- 1. VISION -->
-<section id="vision">
-  <h2 class="sec"><span class="n">1</span> החזון והמטרה — North Star</h2>
+  <div class="grp">איפיון מודולים</div>
+  <a class="nav" data-t="brand">Brand Brain + מצב 0<span class="st">✓</span></a>
+  <a class="nav" data-t="competitors">מחקר מתחרים<span class="st">✓</span></a>
+  <a class="nav" data-t="data">שכבת נתונים<span class="st">◐</span></a>
+  <a class="nav" data-t="crm">כרטיס לקוח 360<span class="st">◐</span></a>
+  <a class="nav" data-t="funnels">פאנלים מובנים<span class="st">◐</span></a>
+  <a class="nav" data-t="content">מנוע תוכן<span class="st">✓</span></a>
+  <a class="nav" data-t="sales">סוכן מכירה<span class="st">✓</span></a>
+  <a class="nav" data-t="care">שירות לקוחות (Post-Sale)<span class="st">✓</span></a>
+  <a class="nav" data-t="media">מדיה ותקציב<span class="st">◐</span></a>
+  <a class="nav" data-t="email">אימייל ו-Flows<span class="st">◐</span></a>
+  <a class="nav" data-t="site">ניהול אתר<span class="st">◐</span></a>
+  <a class="nav" data-t="optimize">אופטימיזציה<span class="st">◐</span></a>
+
+  <div class="grp">מסע ומדידה</div>
+  <a class="nav" data-t="funnel">הפאנל המלא (7 שלבים)</a>
+  <a class="nav" data-t="measure">מדידה ואמינות</a>
+  <a class="nav" data-t="channels">מפת ערוצים</a>
+
+  <div class="grp">ביצוע</div>
+  <a class="nav" data-t="roadmap">תוכנית עבודה</a>
+  <a class="nav" data-t="gantt">גאנט</a>
+  <a class="nav" data-t="news">רוטציית ניוזלטר</a>
+  <a class="nav" data-t="conn">מצב חיבורים</a>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- VISION -->
+<section class="panel" id="vision">
+  <h2 class="sec">החזון — North Star</h2>
   <div class="vision">
     <p class="big">לבנות <b>סוכן קידום, שיווק, שירות ומכירה אוטונומי לחלוטין</b> למותגי איקומרס.</p>
-    <p>מערכת אחת הרמונית המורכבת ממספר כלי AI — כל אחד משרת פיצ'ר אחר, כולם בסנכרון מושלם. המערכת לומדת מי הקהל (מהאיפיון שלנו + מהנתונים הקיימים במערכות), מבינה מה הוא רוצה לראות, מתרגמת את זה לתוכן בריבוי וריאציות, מפרסמת אורגני וממומן, מודדת כל פיסת תוכן, מזהה את הלקוחות הנכונים, רודפת אחריהם ברימרקטינג מותאם-אישית, פותרת את צוואר הבקבוק האנושי במכירה עם תקשורת מיידית, סוגרת עסקה — ואז מלווה, משמרת ומגדילה.</p>
+    <p>מערכת אחת הרמונית ממספר כלי AI — כל אחד משרת פיצ'ר אחר, כולם בסנכרון. לומדת מי הקהל, מבינה מה הוא רוצה, מתרגמת לתוכן בריבוי וריאציות, מפרסמת אורגני וממומן, מודדת כל פיסה, מזהה את הלקוחות הנכונים, רודפת אחריהם ברימרקטינג מותאם-אישית, פותרת את צוואר הבקבוק האנושי במכירה עם תקשורת שוטפת ואנושית, סוגרת עסקה — ואז מלווה, משמרת ומגדילה.</p>
     <div class="goals">
       <div class="goal"><b>מטרה 1 · ↑ CVR</b><br><span style="font-size:13px;color:#d8d2c5;">להגדיל את אחוז ההמרה של האתר.</span></div>
-      <div class="goal"><b>מטרה 2 · ↓ עלויות</b><br><span style="font-size:13px;color:#d8d2c5;">להוריד CPA / CPM ושאר עלויות שיווק — כל דולר קמפיין שווה יותר.</span></div>
-      <div class="goal"><b>שאיפה · Multi-tenant</b><br><span style="font-size:13px;color:#d8d2c5;">מערכת גנרית שתתאים לכל מותג בעולם התכשיטים.</span></div>
+      <div class="goal"><b>מטרה 2 · ↓ עלויות</b><br><span style="font-size:13px;color:#d8d2c5;">להוריד CPA/CPM — כל $ קמפיין שווה יותר.</span></div>
+      <div class="goal"><b>שאיפה · Multi-tenant</b><br><span style="font-size:13px;color:#d8d2c5;">גנרי לכל מותג תכשיטים (נשמר לסוף).</span></div>
     </div>
+  </div>
+  <h3 class="sub">עקרונות שמנחים כל החלטה</h3>
+  <div class="grid">
+    <div class="card"><h3>יעילות תפעולית</h3><div class="role">לא לבנות על תשתית שבירה/אפורה (כמו scraping או sandbox). פתרון בר-קיימא שמתחזק את עצמו.</div></div>
+    <div class="card"><h3>הכלים הכי מתקדמים</h3><div class="role">תמיד הדור האחרון של מודלים וכלים.</div></div>
+    <div class="card"><h3>"האם באמת צריך?"</h3><div class="role">מינימליזם — מורידים כל מה שלא 100% נחוץ.</div></div>
+    <div class="card"><h3>תוכן מהמם</h3><div class="role">תוצר שנראה מושלם. איכות לפני יעילות.</div></div>
+    <div class="card"><h3>↑ המרה</h3><div class="role">כל פעולה מכוונת להעלאת אחוזי ההמרה בחנות.</div></div>
   </div>
 </section>
 
-<!-- 2. ARCHITECTURE -->
-<section id="arch">
-  <h2 class="sec"><span class="n">2</span> ארכיטקטורה — מערכת רב-סוכנית</h2>
-  <p class="lead">לא סוכן ענק אחד, אלא <b>אורקסטרטור</b> מרכזי שמתזמן סוכנים ייעודיים. כל סוכן עם הקשר, כלים ומדדים משלו — אפשר להריץ/לכבות/לכייל כל אחד בנפרד. מתחת לכולם שכבת חיבורים (6 connectors חיים) ומקור-אמת אחד ל-state.</p>
+<!-- ARCHITECTURE -->
+<section class="panel" id="arch">
+  <h2 class="sec">ארכיטקטורת-על</h2>
+  <p class="lead">לא סוכן ענק אחד, אלא <b>אורקסטרטור</b> מרכזי שמתזמן סוכנים ייעודיים. כל סוכן עם הקשר, כלים ומדדים משלו. מתחת — שכבת חיבורים ומקור-אמת אחד (Supabase).</p>
   <div class="arch">
-    <div class="layer"><div class="lh">🧠 שכבת אורקסטרציה</div><div class="ld">מוח מרכזי: יעדים (MER target · CVR target) · מדיניות אוטונומיה (shadow→own) · ניהול הגאנט השיווקי הכולל לרוחב כל הפלטפורמות.</div></div>
-    <div class="layer"><div class="lh">🤖 שכבת הסוכנים</div><div class="ld">מדיה · תוכן · Lead-Response · אימייל · אופטימיזציה/מחקר (פירוט למטה).</div></div>
-    <div class="layer"><div class="lh">🗄️ שכבת State (מקור אמת)</div><div class="ld">כרטיסי לקוח · KPIs · תקציבים · ניסויים · היסטוריה להשוואות לאורך זמן. מועמד: Supabase הקיים.</div></div>
-    <div class="layer"><div class="lh">🔌 שכבת חיבורים</div><div class="ld">Google Ads · Meta · Klaviyo · GSC · WhatsApp · Google Reviews · Shopify · GA4 · Calendly · Canva · CustomizeAI.</div></div>
+    <div class="layer"><div class="lh">🧭 אורקסטרציה</div><div class="ld">מוח מרכזי: יעדים (MER/CVR), ניהול הגאנט הכולל, תזמון הסוכנים.</div></div>
+    <div class="layer"><div class="lh">🤖 סוכנים</div><div class="ld">13 מודולים (טבלה למטה).</div></div>
+    <div class="layer"><div class="lh">🗄️ State (Supabase)</div><div class="ld">כרטיסי לקוח · KPIs · תקציבים · ניסויים · נכסי תוכן · Brand Brain.</div></div>
+    <div class="layer"><div class="lh">🔌 חיבורים</div><div class="ld">Google Ads · Meta · Klaviyo · GSC · GA4 · WhatsApp · Google Reviews · Shopify · Calendly · Canva · Meta Ad Library · CustomizeAI.</div></div>
   </div>
-  <h3 class="sub">הסוכנים</h3>
-  <div class="agents">
-    <div class="agent"><h3>סוכן מדיה</h3><ul><li>יוצר ומנהל קמפיינים בכל הרשת</li><li>Budget Reallocator — מעביר תקציב <b>מיידית</b> מנכס מגמגם למתפקד</li><li>בוחן קריאטיבים פר-פלטפורמה, שוטף</li></ul></div>
-    <div class="agent"><h3>סוכן תוכן</h3><ul><li>מחקר → רעיונות → וריאציות (רגש/מסר/תמונה)</li><li>סטילס ממותג → וידאו → אווטרים/UGC</li><li>קופי פר-שלב-משפך</li></ul></div>
-    <div class="agent"><h3>סוכן Lead-Response</h3><ul><li>מגיב תוך שניות: WhatsApp / SMS / Email</li><li>שיחות טלפון (voice agent)</li><li>שולח לינקים רלוונטיים · קובע פגישות</li></ul></div>
-    <div class="agent"><h3>סוכן אימייל</h3><ul><li>ניוזלטרים + Flows מובנים (יצירה/עיצוב)</li><li>ניתוח פתיחות/קליקים אחרי שליחה</li><li>הסקת מוכנות לרכישה</li></ul></div>
-    <div class="agent"><h3>סוכן אופטימיזציה / מחקר</h3><ul><li>מחקר מילים + הזדמנויות חדשות</li><li>A/B מתמשך על מדדים מובילים</li><li>דוחות + קידום LLM (GEO)</li></ul></div>
-  </div>
+  <h3 class="sub">מפת המודולים <span class="status-tag s-locked">ננעל 23.6</span></h3>
+  <table class="mods">
+    <tr><th>מודול</th><th>מטרה</th><th>סטטוס איפיון</th></tr>
+    <tr><td class="m">🧠 Brand Brain</td><td>זיכרון המותג: ערכים, רגשות, פרסונות. נטען ע"י תהליך "מצב 0".</td><td>✓ סגור</td></tr>
+    <tr><td class="m">🔍 Competitor Intel</td><td>מחקר מתחרים שוטף: מודעות, מוצרים, מחירים, מבצעים, פלטפורמות.</td><td>✓ סגור</td></tr>
+    <tr><td class="m">🗄️ Data Layer</td><td>חיבורים + State. GA4 וכל המקורות.</td><td>◐ באיפיון</td></tr>
+    <tr><td class="m">👤 Customer 360</td><td>כרטיס לקוח חי לכל ליד/לקוח.</td><td>◐ באיפיון</td></tr>
+    <tr><td class="m">🎯 Funnel Engine</td><td>פאנלים מובנים — נרכבים תוך כדי למידה, לא מראש.</td><td>◐ באיפיון</td></tr>
+    <tr><td class="m">🎨 Content Engine</td><td>מנהל תוכן + מומחים: רגש→קונספט→קופי→סטילס→וידאו→פורמט.</td><td>✓ עיקרון סגור</td></tr>
+    <tr><td class="m">📡 Media Agent</td><td>קמפיינים + תקציבים + Cold-Start exploration.</td><td>◐ באיפיון</td></tr>
+    <tr><td class="m">💬 Sales Agent</td><td>תקשורת מכירתית שוטפת רב-ערוצית + עוגנים פסיכולוגיים.</td><td>✓ עיקרון סגור</td></tr>
+    <tr><td class="m">✉️ Email/Flow Agent</td><td>ניוזלטרים + flows + ניתוח.</td><td>◐ באיפיון</td></tr>
+    <tr><td class="m">🤝 Customer Care</td><td>Post-Sale: ליווי, עדכונים, הגדלה, שביעות רצון.</td><td>✓ סגור</td></tr>
+    <tr><td class="m">🌐 Site Manager</td><td>ניהול האתר: באנרים, תיאורים, פופאפים, בלוג.</td><td>◐ באיפיון</td></tr>
+    <tr><td class="m">📊 Optimization</td><td>A/B + דוחות + MER.</td><td>◐ באיפיון</td></tr>
+    <tr><td class="m">🧭 Orchestrator</td><td>המוח שמתזמן את כולם.</td><td>◐ באיפיון</td></tr>
+  </table>
+  <div class="callout"><b>כלים פנימיים של דיאנה רפאל</b> (CustomizeAI · מערכת ניהול · סוכן וואטסאפ) — <b>מערכות שכנות</b>, לא חלק מהמנוע. המנוע רק מתממשק. CustomizeAI במיוחד = פיצ'ר בתוך חלון השיחה של Sales Agent (לקוח מבקש "תראה לי עם יהלום אחר" → הסוכן פונה לאפליקציה).</div>
 </section>
 
-<!-- 3. FUNNEL -->
-<section id="funnel">
-  <h2 class="sec"><span class="n">3</span> הפאנל המלא — מקצה לקצה</h2>
-  <p class="note">לכל שלב: המטרה · מה כבר יש לנו <span class="badge b-have">קיים</span> · מה צריך לבנות <span class="badge b-build">לבנות</span>. עקרון-על: <b>אין המתנה</b> — צוואר הבקבוק הוא הזמן האנושי, ואותו אנחנו מבטלים.</p>
-  <div class="stages">
-
-    <!-- Stage 1 -->
-    <div class="pstage">
-      <div class="bar"><span class="idx">1</span><span class="ttl">חשיפה ראשונית (TOFU)</span><span class="kpi">KPI: חשיפות · קליקים · CTR</span></div>
-      <div class="body">
-        <p class="goal-line"><b>מטרה:</b> למצוא את הלקוחות שקונים תכשיטים אלטרנטיביים (יהלומים שחורים) ולתפוס את תשומת ליבם. המערכת משערכת מי הקהל (לומדת מהאיפיון + מהנתונים), חוקרת מה הוא רוצה לראות, מתרגמת לרעיונות תוכן, מייצרת וריאציות, ומפרסמת אורגני + ממומן.</p>
-        <div class="cols">
-          <div class="have-box"><div class="colh">קיים</div><ul>
-            <li>GSC live — מילות חיפוש אמיתיות + הזדמנויות AEO</li>
-            <li>Google Ads + Meta connectors (read) — היסטוריית 130 קמפיינים</li>
-            <li>נכסים: בלוג Shopify · Instagram · Pinterest</li>
-          </ul></div>
-          <div class="build-box"><div class="colh">לבנות</div><ul>
-            <li>שכבת <b>כתיבה</b> למדיה (יצירת קמפיינים)</li>
-            <li>מנוע מחקר-קהל → רעיונות תוכן</li>
-            <li>מנוע וריאציות (רגש/מסר/תמונה) + בחינת קריאטיב פר-פלטפורמה</li>
-            <li>פרסום אורגני אוטומטי (מאמרים/IG/Pinterest) + קידום LLM</li>
-          </ul></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stage 2 -->
-    <div class="pstage">
-      <div class="bar"><span class="idx">2</span><span class="ttl">רימרקטינג (שיווק מחדש)</span><span class="kpi">KPI: Reach/Frequency · CPA</span></div>
-      <div class="body">
-        <p class="goal-line"><b>מטרה:</b> לדעת <b>על אילו לקוחות להשקיע יותר</b>, מה ה-CPA, ובאיזו פלטפורמה לקשר עם כל לקוח (שונה מלקוח ללקוח). תוכן <b>מותאם אישית</b>: שם · התכשיט שהתעניין בו · האירוע שהוא חוגג. כאן הלקוח כבר מכיר אותנו — צריך לנטרל חששות: "לא מכירים אותכם" · "מעבר לים" · מכסי ארה״ב · "רוצה כמו אבל לא בדיוק" · חשד ל"יהלומי דמים" מול <b>ethically sourced</b>.</p>
-        <div class="cols">
-          <div class="have-box"><div class="colh">קיים</div><ul>
-            <li>היסטוריית רימרקטינג בחשבונות (Meta ~$11.7K, Google $68.5K)</li>
-            <li>מותג מעוגן: דואליות · תדרים · אנרגיה</li>
-          </ul></div>
-          <div class="build-box"><div class="colh">לבנות</div><ul>
-            <li>מנוע ניקוד-לקוח → תקצוב פר-ליד וניתוב פלטפורמה</li>
-            <li>תוכן מנטרל-חששות: ביקורות כתובות · UGC באווטרים · כתבות Vogue · נתוני חברה · מבצעים</li>
-            <li>אסטרטגיית לכידת טלפון + אימייל</li>
-          </ul></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stage 3 -->
-    <div class="pstage">
-      <div class="bar"><span class="idx">3</span><span class="ttl">לכידה + פתיחת כרטיס לקוח</span><span class="kpi">★ KPI מרכזי: שיעור לכידה</span></div>
-      <div class="body">
-        <p class="goal-line"><b>מטרה:</b> להמיר מבקר אנונימי לליד מזוהה (מייל ו/או טלפון). כל ליד פותח <b>כרטיס לקוח</b> שמתמלא שוטף בכל הפרטים. שאיפה: לחבר את חשבונות הסושיאל של הלקוח לכרטיס.</p>
-        <div class="cols">
-          <div class="have-box"><div class="colh">קיים</div><ul>
-            <li>Klaviyo כ-CDP (31 רשימות, 10 סגמנטים)</li>
-            <li>Shopify customer data</li>
-          </ul></div>
-          <div class="build-box"><div class="colh">לבנות</div><ul>
-            <li>סכמת כרטיס-לקוח 360 (ראה סעיף 5)</li>
-            <li>פופאפים/טפסי לכידה חכמים</li>
-            <li>העשרת פרופיל + חיבור סושיאל</li>
-          </ul></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stage 4 -->
-    <div class="pstage">
-      <div class="bar"><span class="idx">4</span><span class="ttl">Lead-Response מיידי</span><span class="kpi">KPI: זמן-תגובה · פגישות</span></div>
-      <div class="body">
-        <p class="goal-line"><b>מטרה:</b> לפתור את צוואר הבקבוק האנושי. רגע שהלקוח השאיר מייל/טלפון — סוכן אוטונומי (כנראה <code>OpenClaw</code> — לאימות) מגיב <b>מיד</b> ב-SMS / WhatsApp / שיחת טלפון. עונה על שאלות, מנסה למכור <b>לפי השלב בפאנל</b>, ושולח לינקים רלוונטיים (מוצר או דפי אתר). הרימרקטינג והאימייל ממשיכים במקביל.</p>
-        <div class="cols">
-          <div class="have-box"><div class="colh">קיים</div><ul>
-            <li>WhatsApp connector (אומת על test number)</li>
-            <li>Calendly MCP — קביעת פגישות</li>
-            <li>Voice DNA לטון הכתיבה</li>
-          </ul></div>
-          <div class="build-box"><div class="colh">לבנות</div><ul>
-            <li>Voice agent לשיחות טלפון (בחירת כלי)</li>
-            <li>WhatsApp production (מספר אמיתי + token קבוע + templates)</li>
-            <li>אורקסטרציית triggers (webhook ליד → תגובה בשניות)</li>
-            <li>לוגיקת "מה אומרים בכל שלב" + בנק לינקים</li>
-          </ul></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stage 5 -->
-    <div class="pstage">
-      <div class="bar"><span class="idx">5</span><span class="ttl">נרצ'ר רב-ערוצי (אימייל + Flows)</span><span class="kpi">KPI: מוכנות לרכישה</span></div>
-      <div class="body">
-        <p class="goal-line"><b>מטרה:</b> ניהול מלא של אימייל מרקטינג — מעבר לניוזלטרים, הפעלת <b>Flows</b> מובנים (יצירה, עיצוב, ניתוח). המערכת יודעת מי פתח, כמה פעמים, קליקים וכל פעולה — ומסיקה <b>רמת מוכנות לרכישה</b>. במקביל עוקבת אחרי התנהגות באתר (ראה סעיף 5) לחיזוק ההסקה.</p>
-        <div class="cols">
-          <div class="have-box"><div class="colh">קיים</div><ul>
-            <li>Klaviyo: 45 flows קיימים — <b>0 חיים</b> (הזדמנות מיידית)</li>
-            <li>325 קמפיינים היסטוריים</li>
-          </ul></div>
-          <div class="build-box"><div class="colh">לבנות</div><ul>
-            <li>הפעלת flows: Welcome · Abandoned Cart · Browse · Post-Purchase · Win-back</li>
-            <li>שכבת כתיבה ל-Klaviyo (יצירת/הפעלת flows)</li>
-            <li>מנוע ניקוד-מוכנות מאיתותי פתיחה/קליק/אתר</li>
-          </ul></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stage 6 -->
-    <div class="pstage">
-      <div class="bar"><span class="idx">6</span><span class="ttl">המרה</span><span class="kpi">KPI: הזמנות · AOV · CVR</span></div>
-      <div class="body">
-        <p class="goal-line"><b>מטרה:</b> סגירת העסקה — להגדיל את אחוז ההמרה של האתר ולהוריד את עלות הרכישה. שילוב פגישה אישית (Calendly) + רכישה ישירה, מותאם לדפוס "אישה מחפשת → גבר משלם".</p>
-        <div class="cols">
-          <div class="have-box"><div class="colh">קיים</div><ul>
-            <li>Shopify checkout · Calendly</li>
-            <li>AOV מוכח ~$1,850</li>
-          </ul></div>
-          <div class="build-box"><div class="colh">לבנות</div><ul>
-            <li>אופטימיזציית CVR מתמשכת (CRO)</li>
-            <li>סגירת לולאת המרה → כרטיס לקוח</li>
-          </ul></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stage 7 -->
-    <div class="pstage">
-      <div class="bar"><span class="idx">7</span><span class="ttl">אחרי הרכישה — ליווי · שימור · הגדלה</span><span class="kpi">KPI: LTV · רכישה חוזרת · ביקורות</span></div>
-      <div class="body">
-        <p class="goal-line"><b>מטרה:</b> ללוות את הלקוח עד שהתכשיט מגיע — עדכוני סטטוס, בקשת פרטי משלוח. להציע <b>הגדלות מכירה</b> (לכל טבעת אירוסין → טבעת נישואין) ותכשיטים משלימים (מיד או חודשים אחרי). לזכור <b>תאריכים חשובים</b> ולשלוח ברכות. לבקש ביקורת.</p>
-        <div class="cols">
-          <div class="have-box"><div class="colh">קיים</div><ul>
-            <li>מערכת ניהול + shipping agent (סטטוסי משלוח)</li>
-            <li>Google Reviews connector (ניטור)</li>
-            <li>WhatsApp לעדכונים</li>
-          </ul></div>
-          <div class="build-box"><div class="colh">לבנות</div><ul>
-            <li>Flow ליווי-משלוח אוטומטי + איסוף פרטי משלוח</li>
-            <li>מנוע cross-sell/upsell (מיידי + מושהה)</li>
-            <li>לוח תאריכים חשובים → ברכות אוטומטיות</li>
-          </ul></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- 4. CONTENT ENGINE -->
-<section id="content">
-  <h2 class="sec"><span class="n">4</span> מנוע התוכן</h2>
-  <p class="lead">הלב של החשיפה. לולאה: <b>מחקר → רעיונות → וריאציות → פרסום → מדידה → למידה</b>. כל פיסת תוכן נמדדת, והמערכת לומדת מה עובד בכל פלטפורמה ומשפרת שוטף.</p>
-  <div class="grid3">
-    <div class="card"><h3>① מחקר קהל</h3><div class="role">לומדת מי הקהל מהאיפיון + מהנתונים הקיימים (GSC, Klaviyo, Shopify). מה הוא רוצה לראות, אילו חששות יש לו.</div></div>
-    <div class="card"><h3>② רעיונות</h3><div class="role">מתרגמת תובנות לרעיונות: מאמרים · פוסטים · תמונות · סרטונים · אימיילים שבועיים.</div></div>
-    <div class="card"><h3>③ וריאציות</h3><div class="role">כל רעיון בכמה גרסאות — רגשות שונים · מסרים שונים · תמונות שונות. בסיס ל-A/B.</div></div>
-    <div class="card"><h3>④ הפקה</h3><div class="role">סטילס ממותג (gpt-image-1 / Canva) → וידאו → אווטרים/UGC. קופי בקול המותג.</div></div>
-    <div class="card"><h3>⑤ פרסום</h3><div class="role"><b>אורגני:</b> מאמרים · SMS · WhatsApp · אימיילים. <b>ממומן:</b> קמפיינים בחשבונות מודעות + קידום LLM (GPT/Claude/Gemini).</div></div>
-    <div class="card"><h3>⑥ מדידה ולמידה</h3><div class="role">ביצועי כל פיסה דרך GA4 · Meta Ads · Google Ads · Search Console → חזרה למחקר.</div></div>
-  </div>
-  <p class="note" style="margin-top:12px;">דגש-על (Daniel 14.6): היעד המרכזי הוא <b>מנוע תוכן</b> — מתחילים בסטילס ממותג איכותי, מתקדמים לוידאו, ואז דוגמניות וירטואליות/דמויות AI שעונדות את התכשיטים. ייתכן <b>סוכן תוכן נפרד</b> מסוכן השיווק.</p>
-</section>
-
-<!-- 5. CRM -->
-<section id="crm">
-  <h2 class="sec"><span class="n">5</span> כרטיס לקוח 360 + מעקב התנהגות</h2>
-  <p class="lead">לכל ליד כרטיס לקוח חי שמתמלא שוטף. המערכת עוקבת אחרי כל פעולה באתר כדי להבין מה מניע את הלקוח, ממה הוא חושש ומה הוא מחפש.</p>
-  <div class="cols">
-    <div class="card"><h3>מה הכרטיס מכיל</h3><ul style="margin:6px 0 0;padding-inline-start:18px;font-size:13px;">
-      <li>שם · מייל · טלפון</li>
-      <li>התכשיט שהתעניין בו · האירוע שהוא חוגג</li>
-      <li>שלב בפאנל + רמת מוכנות לרכישה</li>
-      <li>CPA פר-לקוח + ערוץ מועדף</li>
-      <li>חשבונות סושיאל מקושרים (שאיפה)</li>
-      <li>היסטוריית תקשורת (כל הערוצים)</li>
+<!-- BRAND BRAIN -->
+<section class="panel" id="brand">
+  <div class="crumbs">איפיון מודולים › Brand Brain + מצב 0</div>
+  <h2 class="sec">🧠 Brand Brain + מצב 0 <span class="status-tag s-locked">סגור</span></h2>
+  <p class="lead"><b>מצב 0</b> = תהליך אונבורדינג שרץ פעם אחת כשמותג נכנס למערכת. ממפה את המצב הנוכחי ואת ההזדמנויות, ושומר הכל ב-<b>Brand Brain</b> — מאגר הזיכרון הקבוע של המותג שכל שאר המודולים שואבים ממנו.</p>
+  <div class="specgrid">
+    <div class="spec"><h4>מצב 0 — מיפוי מצב</h4><ul>
+      <li>טראפיק + מקורות טראפיק</li><li>איפיון הקהלים</li><li>המוצרים</li><li>המודעות (קיימות/עבר)</li>
+      <li>רגשות הקשורים למותג</li><li>ערכי המותג</li><li>עונתיות האתר</li><li>ביטויי מפתח שמביאים טראפיק</li><li>מדדי PPC: CPA · CPM</li>
     </ul></div>
-    <div class="card"><h3>מעקב התנהגות באתר</h3><ul style="margin:6px 0 0;padding-inline-start:18px;font-size:13px;">
-      <li>אילו עמודים ביקר · אילו נתונים קרא</li>
-      <li>הוסיף פריטים לעגלה?</li>
-      <li>התחיל צ'קאאוט?</li>
-      <li>פעם שנייה / שלישית / חמישית שחוזר?</li>
-      <li>אותות פתיחה/קליק במייל</li>
-      <li>→ הכל מזין את הסקת המוכנות לרכישה</li>
+    <div class="spec"><h4>מצב 0 — מיפוי הזדמנויות</h4><ul>
+      <li>נושאים לדבר עליהם</li><li>פלטפורמות לשווק בהן</li><li>פערים מול מתחרים</li><li>ביטויים/קהלים לא מנוצלים</li>
+    </ul></div>
+    <div class="spec"><h4>Brand Brain — מה נשמר</h4><ul>
+      <li>ערכים · רגשות · טון</li><li>פרסונות קהל</li><li>נכסי מותג (ויזואל, שפה)</li><li>תוצרי מצב 0 + מתחרים</li><li>→ מוזרק כ-Context לכל סוכן</li>
     </ul></div>
   </div>
-  <p class="note" style="margin-top:10px;"><span class="badge b-build">לבנות</span> סכמת State + מקור-אמת (החלטה פתוחה: Supabase / Klaviyo CDP) · pixel/אירועי אתר · לוגיקת ניקוד.</p>
+  <div class="callout">Diana Rafael: דואליות · חלל · אנרגיה · אסטרולוגיה · תדרים. פוקוס: BLACK ICE / יהלומים שחורים. <b>אתי:</b> ethically sourced diamonds (לא "יהלומי דמים").</div>
+  <p class="note">◻️ <b>נשאר לאיפיון עתידי:</b> סקילים · כלי AI · טריגרים (מתי מצב 0 רץ מחדש?).</p>
 </section>
 
-<!-- 6. LEAD RESPONSE -->
-<section id="lead">
-  <h2 class="sec"><span class="n">6</span> Lead-Response — פתרון צוואר הבקבוק האנושי</h2>
-  <p class="lead">צוואר הבקבוק במכירות הוא בני האדם. ברגע שהלקוח השאיר אימייל/טלפון — הוא מקבל <b>תקשורת מיידית</b>, לא אחרי שעות.</p>
-  <div class="grid3">
-    <div class="card"><h3>ערוצים</h3><div class="role">SMS · WhatsApp · שיחות טלפון (סוכן קולי, כנראה OpenClaw — לאימות). במקביל לרימרקטינג ואימייל שממשיכים.</div></div>
-    <div class="card"><h3>מה הסוכן עושה</h3><div class="role">עונה על שאלות · מנסה למכור לפי השלב בפאנל · שולח לינקים רלוונטיים (מוצר/דפי אתר) · קובע פגישות.</div></div>
-    <div class="card"><h3>Escalation</h3><div class="role">ליד high-intent שלא נסגר → עובר לדניאל עם סיכום. shadow-then-own: בהתחלה אישור על כל הודעה.</div></div>
+<!-- COMPETITORS -->
+<section class="panel" id="competitors">
+  <div class="crumbs">איפיון מודולים › מחקר מתחרים</div>
+  <h2 class="sec">🔍 מחקר מתחרים <span class="status-tag s-locked">סגור</span></h2>
+  <p class="lead">רץ <b>אחרי מצב 0</b> וממשיך שוטף. ממפה שחקנים <b>פעילים</b> בשוק (לא מתים).</p>
+  <div class="specgrid">
+    <div class="spec"><h4>מה ממפים</h4><ul>
+      <li>מודעות (יצירתיות + מסרים)</li><li>מוצרים</li><li>מחירים</li><li>פלטפורמות פעילות</li><li>מבצעים</li><li>הטבות ללקוחות</li>
+    </ul></div>
+    <div class="spec"><h4>איך — מקורות קיימא</h4><ul>
+      <li><b>Meta Ad Library API</b> (רשמי, חינם) — כל המודעות הפעילות של המתחרים</li>
+      <li>אתרי המתחרים (מחירים/מוצרים)</li><li>Google/Pinterest ציבורי</li>
+    </ul></div>
+    <div class="spec"><h4>Inbox השראה (human-in-the-loop)</h4><ul>
+      <li>קבוצות וואטסאפ/פייסבוק — <b>אין API רשמי</b>; scraping אפור ושביר</li>
+      <li>פתרון: דניאל/מישהו מעביר פריט מעניין → הסוכן מנתח</li>
+      <li>נמנעים מאוטומציה שבירה (עקרון יעילות)</li>
+    </ul></div>
   </div>
+  <div class="callout">🔗 כלי שנשלח לבדיקה (מנוע תוכן): <code>newgc.ai</code> — UGC. ממתין למיפוי בשלב מנוע התוכן.</div>
 </section>
 
-<!-- 7. EMAIL -->
-<section id="email">
-  <h2 class="sec"><span class="n">7</span> מנוע אימייל ו-Flows</h2>
-  <p class="lead">ניהול מלא של אימייל מרקטינג ב-Klaviyo — לא רק שליחה, אלא יצירה, עיצוב, הפעלה וניתוח.</p>
+<!-- DATA -->
+<section class="panel" id="data">
+  <div class="crumbs">איפיון מודולים › שכבת נתונים</div>
+  <h2 class="sec">🗄️ שכבת נתונים <span class="status-tag s-spec">באיפיון — שלב 3</span></h2>
+  <p class="lead">המערכת מתחברת ל-<b>Google Analytics</b> וכל מקורות הנתונים. State ב-Supabase.</p>
   <div class="grid">
-    <div class="card"><h3>ניוזלטרים</h3><div class="role">רוטציה דו-שבועית (ראה סעיף 13).</div><span class="tag">Owned</span></div>
-    <div class="card"><h3>Flows מובנים</h3><div class="role">Welcome · Abandoned Cart · Browse · Post-Purchase · Win-back. כיום 0 מתוך 45 חיים.</div><span class="tag b-build" style="background:#fbeede;color:#a85f23;border:1px solid #a85f23;">הזדמנות</span></div>
-    <div class="card"><h3>ניתוח</h3><div class="role">מי פתח, כמה פעמים, קליקים, כל פעולה → רמת מוכנות לרכישה.</div><span class="tag">Insight</span></div>
+    <div class="card"><h3>מקורות (טיוטה)</h3><ul class="clean"><li>GA4 — התנהגות אתר</li><li>Shopify — הזמנות/מוצרים</li><li>Klaviyo — אימייל/פרופילים</li><li>Google Ads · Meta — מדיה</li><li>GSC — חיפוש</li><li>Meta Ad Library — מתחרים</li></ul></div>
+    <div class="card"><h3>State (Supabase)</h3><ul class="clean"><li>טבלאות שיווק: leads · kpis · budgets · experiments · content</li><li>היסטוריה להשוואות לאורך זמן</li><li>בדיקת שפיות (anti-hallucination)</li></ul></div>
   </div>
+  <p class="note">🔄 שלב איפיון 3 — נעמיק: מה מושכים מכל מקור, באיזו תדירות, סכמה.</p>
 </section>
 
-<!-- 8. POST PURCHASE -->
-<section id="post">
-  <h2 class="sec"><span class="n">8</span> אחרי הרכישה — ליווי · שימור · הגדלה</h2>
-  <div class="feat">
-    <div class="f"><div class="ic">📦</div><h3>ליווי משלוח</h3><p>עדכוני סטטוס על התכשיט עד שמגיע · בקשת פרטי משלוח מהלקוח.</p></div>
-    <div class="f"><div class="ic">💍</div><h3>הגדלת מכירה</h3><p>לכל טבעת אירוסין → להציע טבעת נישואין.</p></div>
-    <div class="f"><div class="ic">✨</div><h3>תכשיטים משלימים</h3><p>cross-sell מיד אחרי הרכישה, או כמה חודשים אחרי.</p></div>
-    <div class="f"><div class="ic">🎂</div><h3>תאריכים חשובים</h3><p>זוכרת תאריכים של הלקוח ושולחת ברכות.</p></div>
-    <div class="f"><div class="ic">⭐</div><h3>ביקורות</h3><p>בקשת Google Review בתזמון הנכון.</p></div>
+<!-- CRM -->
+<section class="panel" id="crm">
+  <div class="crumbs">איפיון מודולים › כרטיס לקוח 360</div>
+  <h2 class="sec">👤 כרטיס לקוח 360 <span class="status-tag s-spec">באיפיון — שלב 4</span></h2>
+  <p class="lead">לכל ליד/לקוח כרטיס חי שמתמלא שוטף. <b>סיווג:</b> ליד (עוד לא רכש) מול לקוח (כבר רכש).</p>
+  <div class="specgrid">
+    <div class="spec"><h4>פרטים</h4><ul><li>שם · מייל · טלפון</li><li>מיקום גאוגרפי</li><li>תאריכים נבחרים (אירועים)</li><li>סיווג: ליד / לקוח</li></ul></div>
+    <div class="spec"><h4>התנהגות</h4><ul><li>כמה פעמים באתר</li><li>אילו מוצרים התעניין</li><li>עמודים/נתונים שקרא · ATC · צ'קאאוט</li><li>מקבל אימיילים? מגיב להם?</li></ul></div>
+    <div class="spec"><h4>קשר וזהות</h4><ul><li>היסטוריית תקשורת מלאה (כל הערוצים)</li><li>חשבונות סושיאל מקושרים</li><li>שלב בפאנל + רמת מוכנות לרכישה</li></ul></div>
   </div>
+  <p class="note">🔄 שלב איפיון 4 — נעמיק לכדי סכמת טבלה.</p>
 </section>
 
-<!-- 9. CHANNELS -->
-<section id="channels">
-  <h2 class="sec"><span class="n">9</span> מפת ערוצים ותפקידים</h2>
+<!-- FUNNELS -->
+<section class="panel" id="funnels">
+  <div class="crumbs">איפיון מודולים › פאנלים מובנים</div>
+  <h2 class="sec">🎯 פאנלים מובנים <span class="status-tag s-spec">באיפיון — שלב 5</span></h2>
+  <p class="lead"><b>עיקרון מפתח:</b> הפאנלים <b>לא קיימים מראש</b> — המערכת מרכיבה אותם <b>תוך כדי למידה</b>. פר-קהל / פר-מוצר.</p>
   <div class="grid">
-    <div class="card"><h3>Google Search + AEO</h3><div class="role">לכידת ביקוש קיים — כוונה גבוהה + הופעה בתשובות LLM.</div><span class="tag">ממומן + אורגני</span></div>
-    <div class="card"><h3>רימרקטינג (Google + Meta)</h3><div class="role">המרת קהל חם בתדירות גבוהה — לב המודל.</div><span class="tag">ממומן</span></div>
-    <div class="card"><h3>Pinterest</h3><div class="role">כוונת ברידל/אירוסין — ויזואלי, מצטבר.</div><span class="tag">אורגני + ממומן</span></div>
-    <div class="card"><h3>Instagram</h3><div class="role">מיתוג ויזואלי · Reels · סיפור מותג.</div><span class="tag">אורגני</span></div>
-    <div class="card"><h3>Facebook</h3><div class="role">תשתית רימרקטינג ממומן.</div><span class="tag">ממומן</span></div>
-    <div class="card"><h3>Klaviyo — Email/SMS</h3><div class="role">נרצ'ר: ניוזלטר + flows.</div><span class="tag">Owned</span></div>
-    <div class="card"><h3>WhatsApp</h3><div class="role">נרצ'ר ישיר + Lead-Response.</div><span class="tag">Owned</span></div>
-    <div class="card"><h3>קידום LLM (GEO)</h3><div class="role">להופיע ב-GPT · Claude · Gemini כמקור מומלץ.</div><span class="tag">אורגני</span></div>
-    <div class="card"><h3>פגישה אישית (Calendly)</h3><div class="role">בידול לטיקט גבוה — CTA חוזר.</div><span class="tag">המרה</span></div>
-    <div class="card"><h3>בלוג / מאמרים (Shopify)</h3><div class="role">SEO/AEO סביב Black Ice.</div><span class="tag">אורגני</span></div>
+    <div class="card"><h3>דוגמה א'</h3><div class="role">אישה רווקה בת 22 שמחפשת עגילים לעצמה.</div></div>
+    <div class="card"><h3>דוגמה ב'</h3><div class="role">גבר שמחפש מתנת יום-הולדת לאשתו.</div></div>
+  </div>
+  <div class="callout">לשתי הפרסונות <b>פאנל שונה בתכלית</b> — רגשות, מסרים, מוצרים, תזמון. המערכת לומדת ובונה את הפאנל הנכון לכל אחת, ולא כובלת מראש.</div>
+  <p class="note">🔄 שלב איפיון 5.</p>
+</section>
+
+<!-- CONTENT -->
+<section class="panel" id="content">
+  <div class="crumbs">איפיון מודולים › מנוע תוכן</div>
+  <h2 class="sec">🎨 מנוע תוכן <span class="status-tag s-locked">עיקרון סגור</span></h2>
+  <p class="lead"><b>ארכיטקטורה: מנהל תוכן (orchestrator) + סוכני-מומחה צרים.</b> איכות לפני יעילות — כל מקצוע מקבל מומחה משלו עם פרומפט-מערכת ייעודי. המנהל מזריק Brand Context אחיד לעקביות.</p>
+  <h3 class="sub">שרשרת המומחים</h3>
+  <div class="specgrid">
+    <div class="spec"><h4>① מיפוי רגש</h4><ul><li>איזה רגש לכל שלב בפאנל</li></ul></div>
+    <div class="spec"><h4>② קונספט</h4><ul><li>רעיון מרכזי + סצנה</li></ul></div>
+    <div class="spec"><h4>③ קופי</h4><ul><li>מומחה קופירייטינג בקול המותג</li></ul></div>
+    <div class="spec"><h4>④ Art Direction</h4><ul><li>שפה ויזואלית</li></ul></div>
+    <div class="spec"><h4>⑤ סטילס</h4><ul><li>gpt-image-1 / Canva</li></ul></div>
+    <div class="spec"><h4>⑥ וידאו / UGC</h4><ul><li>אווטרים · כלים (newgc.ai לבדיקה)</li></ul></div>
+    <div class="spec"><h4>⑦ פורמט פלטפורמה</h4><ul><li>התאמה ל-IG/Pinterest/FB/אתר</li></ul></div>
+  </div>
+  <h3 class="sub">וריאציות + Cold-Start</h3>
+  <div class="callout"><b>שלב Cold-Start (Performance-Max):</b> אחרי מצב 0 — מייצרים חבילת קריאטיבים מגוונת (רעיונות/קופי/ויזואל שונים, פר-רגש) כבדיקה ראשונית. חלק משיטת הסקת המסקנות של המערכת — <b>בלי להגביל</b> אותה איך היא מסיקה.</div>
+  <p class="note">🔄 <b>עבודה כבדה (שלב 6):</b> מיפוי כל כלי השוק (עלות מול תועלת + אינטגרציות), בניית סצנות, הכנת נכסי המותג למנוע, והנדסת פרומפטים חזקה — וריאציות פר-<b>רגש</b>, פר-<b>מוצר</b>, פר-<b>אדם</b>.</p>
+</section>
+
+<!-- SALES -->
+<section class="panel" id="sales">
+  <div class="crumbs">איפיון מודולים › סוכן מכירה</div>
+  <h2 class="sec">💬 סוכן מכירה <span class="status-tag s-locked">עיקרון סגור</span></h2>
+  <p class="lead">לא תגובה חד-פעמית — <b>תקשורת מכירתית שוטפת רב-ערוצית</b> מרגע שהלקוח השאיר פרטים. מתואמת עם הרימרקטינג (שממשיך), כדי לדלות פרטים ולייצר תוכן פרסונלי יותר. מוכר לפי השלב בפאנל ושולח לינקים רלוונטיים.</p>
+  <div class="specgrid">
+    <div class="spec"><h4>תחושה אנושית</h4><ul><li>מרווחי זמן — לא מיידי מדי</li><li>לא "מציק"</li><li>שלא ירגישו שמדבר בוט</li></ul></div>
+    <div class="spec"><h4>דוגמאות טון</h4><ul><li>אישי בשם דניאל/המותג</li></ul></div>
+    <div class="spec"><h4>CustomizeAI</h4><ul><li>בתוך חלון השיחה: "תראה לי עם יהלום אחר / זהב אחר" → פונה לאפליקציה</li></ul></div>
+  </div>
+  <div class="msg">"היי, זה דניאל. האם יש שאלה נוספת?"</div>
+  <div class="msg">"היי, זה דניאל מדיאנה רפאל, רק רציתי לוודא שקיבלת את כל המידע שאתה צריך."</div>
+  <div class="msg">"היי, זה דניאל מדיאנה רפאל. אני רואה שניסית לרכוש כמה פעמים ולא סיימת — איך אני יכול לעזור?"</div>
+  <h3 class="sub">עוגנים פסיכולוגיים (ידע מכירתי עמוק)</h3>
+  <div>
+    <span class="pill2">שימוש תכוף בשם הלקוח</span>
+    <span class="pill2">הצעת 2 אפשרויות בלבד (א/ב)</span>
+    <span class="pill2">"2 לא 3" — בוחרים בין 2 לפני הצגת השלישית, וחוזר חלילה עד בחירה סופית</span>
+    <span class="pill2">העלאת ערך &gt; הורדת מחיר</span>
+    <span class="pill2">שאלות שעוזרות ללקוח להבין את צרכיו</span>
+  </div>
+  <p class="note">מבוסס מחקרים, ספרים ורעיונות מוכחים. 🔄 לאיפיון: בנק העוגנים המלא + מתי כל אחד.</p>
+</section>
+
+<!-- CARE -->
+<section class="panel" id="care">
+  <div class="crumbs">איפיון מודולים › שירות לקוחות</div>
+  <h2 class="sec">🤝 שירות לקוחות — Post-Sale <span class="status-tag s-locked">סגור</span></h2>
+  <p class="lead">נכנס <b>אחרי המכירה</b>. ממשיך את הקשר: מכיר את הלקוח טוב יותר, מלווה עד הגעת התכשיט, מזהה הזדמנויות הגדלה, ובודק שביעות רצון.</p>
+  <div class="specgrid">
+    <div class="spec"><h4>הכרת הלקוח</h4><ul><li>העמקת הפרופיל אחרי רכישה</li></ul></div>
+    <div class="spec"><h4>ליווי עד הגעה</h4><ul><li>עדכונים על מצב התכשיט</li><li>איסוף פרטי משלוח</li></ul></div>
+    <div class="spec"><h4>הגדלת מכירה</h4><ul><li>טבעת אירוסין → טבעת נישואין</li><li>תכשיטים משלימים (מיד / חודשים אחרי)</li></ul></div>
+    <div class="spec"><h4>שביעות רצון</h4><ul><li>בדיקה אחרי שקיבל את הפריט</li><li>→ בקשת ביקורת</li></ul></div>
   </div>
 </section>
 
-<!-- 10. FEATURES -->
-<section id="features">
-  <h2 class="sec"><span class="n">10</span> פיצ'רים מייחדים</h2>
-  <div class="feat">
-    <div class="f"><div class="ic">🖐️</div><h3>Virtual Try-On</h3><p>הלקוחה שולחת בוואטסאפ תמונת יד → המערכת מניחה את הטבעת ומראה איך זה נראה עליה.</p></div>
-    <div class="f"><div class="ic">🎨</div><h3>CustomizeAI</h3><p>שימוש באפליקציית CustomizeAI לביצוע בקשות התאמה של לקוחות.</p></div>
-    <div class="f"><div class="ic">📊</div><h3>דוחות</h3><p>טראפיק · חשיפה · המרות וכו' — אוטומטי.</p></div>
-    <div class="f"><div class="ic">🚫</div><h3>אין המרות כפולות</h3><p>דדופ קפדני — לא סופרים אותה המרה פעמיים בין פלטפורמות.</p></div>
-    <div class="f"><div class="ic">🛍️</div><h3>קטלוג מלא</h3><p>מתחברת לאתר ומציגה את כל המוצרים, ללא יוצא מן הכלל.</p></div>
-    <div class="f"><div class="ic">🔗</div><h3>שרשור כלי AI</h3><p>מחברת כמה וכמה כלי AI לתהליך אחד מורכב ומדהים.</p></div>
-    <div class="f"><div class="ic">🕹️</div><h3>דשבורד</h3><p>ממשק נוח לתפעול ובקרה על כל המערכת.</p></div>
-    <div class="f"><div class="ic">🧰</div><h3>Skills מלאים</h3><p>לסוכנים כל הסקילים הנדרשים להפעלת המערכת.</p></div>
-  </div>
+<!-- MEDIA -->
+<section class="panel" id="media">
+  <div class="crumbs">איפיון מודולים › מדיה ותקציב</div>
+  <h2 class="sec">📡 מדיה ותקציב <span class="status-tag s-spec">באיפיון</span></h2>
+  <ul class="clean">
+    <li>יצירה וניהול קמפיינים בכל הרשת (Google/Meta/Pinterest)</li>
+    <li><b>Budget Reallocator</b> — מעביר תקציב מנכס מגמגם למתפקד (שמרני: מציע, דניאל מאשר — לשלב מאוחר)</li>
+    <li>Cold-Start: חבילת קריאטיבים מגוונת לבדיקה ראשונית</li>
+    <li>בחינת קריאטיבים פר-פלטפורמה, שוטף · קידום LLM</li>
+  </ul>
+  <p class="note">קיים: Google Ads + Meta connectors (read). 🔄 נשאר: שכבת כתיבה (ads_management).</p>
 </section>
 
-<!-- 11. MEASUREMENT -->
-<section id="measure">
-  <h2 class="sec"><span class="n">11</span> מדידה ואמינות נתונים</h2>
-  <p class="lead">מדד-העל: <b>MER</b> = סך הכנסות ÷ סך הוצאות מדיה ("כסף נכנס ÷ כסף יוצא"). <b>לא</b> ייחוס פר-נגיעה — הפאנל ארוך והקהל "שולח לינקים". זו גם החלטת אמינות: כסף-נכנס ממקור אחד (Shopify), כסף-יוצא ממקור אחד (פלטפורמות) — לא מבקשים מ-AI ליישב מספרי המרה סותרים (שם הוא מהזה).</p>
+<!-- EMAIL -->
+<section class="panel" id="email">
+  <div class="crumbs">איפיון מודולים › אימייל ו-Flows</div>
+  <h2 class="sec">✉️ אימייל ו-Flows <span class="status-tag s-spec">באיפיון</span></h2>
+  <ul class="clean">
+    <li>ניוזלטרים (רוטציה דו-שבועית)</li>
+    <li>Flows מובנים: Welcome · Abandoned Cart · Browse · Post-Purchase · Win-back — <b>0 מתוך 45 חיים</b> (הזדמנות)</li>
+    <li>ניתוח: מי פתח, כמה פעמים, קליקים → רמת מוכנות לרכישה</li>
+  </ul>
+</section>
+
+<!-- SITE -->
+<section class="panel" id="site">
+  <div class="crumbs">איפיון מודולים › ניהול אתר</div>
+  <h2 class="sec">🌐 ניהול האתר <span class="status-tag s-spec">באיפיון — שלב 7</span></h2>
+  <p class="lead">הסוכן <b>מכיר את האתר מצוין</b> — יודע איפה שותלים כל סוג תוכן, ומעדכן אותו עם מה שאנחנו מפיקים.</p>
+  <div class="grid">
+    <div class="card"><h3>איפה שותלים תוכן</h3><ul class="clean"><li>כתבות בלוג → עמוד הבלוג</li><li>באנרים → עמוד הבית</li><li>באנרים → עמודי מוצר</li><li>תיאורים כתובים</li><li>פופאפים</li><li>בלוק באנרים</li></ul></div>
+    <div class="card"><h3>קטלוג מלא</h3><div class="role">מתחבר ומכיר את כל המוצרים, ללא יוצא מן הכלל.</div></div>
+  </div>
+  <p class="note">🔄 שלב איפיון 7.</p>
+</section>
+
+<!-- OPTIMIZE -->
+<section class="panel" id="optimize">
+  <div class="crumbs">איפיון מודולים › אופטימיזציה</div>
+  <h2 class="sec">📊 אופטימיזציה <span class="status-tag s-spec">באיפיון</span></h2>
+  <ul class="clean">
+    <li>A/B מתמשך על מדדים מובילים</li>
+    <li>דוח MER דו-שבועי אוטומטי</li>
+    <li>זיהוי הזדמנויות חדשות + מחקר מילים</li>
+    <li>דוחות: טראפיק · חשיפה · המרות (no double-count)</li>
+  </ul>
+</section>
+
+<!-- FULL FUNNEL -->
+<section class="panel" id="funnel">
+  <h2 class="sec">הפאנל המלא — מסע הלקוח</h2>
+  <p class="note">7 שלבים. עקרון-על: <b>אין המתנה</b> — צוואר הבקבוק האנושי מבוטל ע"י תקשורת מיידית-אך-אנושית.</p>
+  <div class="pstage"><div class="bar"><span class="idx">1</span><span class="ttl">חשיפה ראשונית</span><span class="kpi">חשיפות · CTR</span></div><div class="body"><p class="goal-line"><b>מטרה:</b> למצוא לקוחות לתכשיטים אלטרנטיביים ולתפוס תשומת לב. מחקר→וריאציות→אורגני+ממומן+LLM.</p></div></div>
+  <div class="pstage"><div class="bar"><span class="idx">2</span><span class="ttl">רימרקטינג</span><span class="kpi">Reach · CPA</span></div><div class="body"><p class="goal-line"><b>מטרה:</b> תוכן מותאם-אישית שמנטרל חששות (מעבר לים · מכסים · ethically sourced). ניקוד לקוח + ניתוב פלטפורמה.</p></div></div>
+  <div class="pstage"><div class="bar"><span class="idx">3</span><span class="ttl">לכידה + כרטיס לקוח</span><span class="kpi">★ שיעור לכידה</span></div><div class="body"><p class="goal-line"><b>מטרה:</b> מבקר אנונימי → ליד מזוהה. פתיחת כרטיס לקוח.</p></div></div>
+  <div class="pstage"><div class="bar"><span class="idx">4</span><span class="ttl">סוכן מכירה (שוטף)</span><span class="kpi">פגישות · המרה</span></div><div class="body"><p class="goal-line"><b>מטרה:</b> תקשורת מכירתית שוטפת רב-ערוצית + עוגנים פסיכולוגיים. פותר את צוואר הבקבוק.</p></div></div>
+  <div class="pstage"><div class="bar"><span class="idx">5</span><span class="ttl">נרצ'ר (אימייל + Flows)</span><span class="kpi">מוכנות לרכישה</span></div><div class="body"><p class="goal-line"><b>מטרה:</b> flows + ניתוח איתותים → הסקת מוכנות.</p></div></div>
+  <div class="pstage"><div class="bar"><span class="idx">6</span><span class="ttl">המרה</span><span class="kpi">הזמנות · CVR</span></div><div class="body"><p class="goal-line"><b>מטרה:</b> סגירה. ↑CVR · ↓עלות.</p></div></div>
+  <div class="pstage"><div class="bar"><span class="idx">7</span><span class="ttl">Post-Sale (שירות)</span><span class="kpi">LTV · ביקורות</span></div><div class="body"><p class="goal-line"><b>מטרה:</b> ליווי · הגדלה · cross-sell · ברכות · שביעות רצון.</p></div></div>
+</section>
+
+<!-- MEASURE -->
+<section class="panel" id="measure">
+  <h2 class="sec">מדידה ואמינות</h2>
+  <p class="lead">מדד-על: <b>MER</b> = הכנסות ÷ הוצאות מדיה. <b>לא</b> ייחוס פר-נגיעה. גם החלטת אמינות: כסף-נכנס ממקור אחד (Shopify), כסף-יוצא ממקור אחד (פלטפורמות) — לא מבקשים מ-AI ליישב מספרי המרה סותרים.</p>
   <div class="grid">
     <div class="card"><h3>מדדי-משנה</h3><div class="role">שיעור לכידה · CVR · Reach/Frequency · פגישות · CPA · LTV.</div></div>
-    <div class="card"><h3>בדיקת שפיות</h3><div class="role">נתון חורג מטווח הגיוני (קפיצה פי 10) → המערכת עוצרת ושואלת, לא מזינה הלאה. (90% מהערך ב-5% מהעבודה — לא Data-Quality framework מלא.)</div></div>
+    <div class="card"><h3>בדיקת שפיות</h3><div class="role">נתון חורג (קפיצה פי 10) → עוצר ושואל, לא מזין הלאה.</div></div>
     <div class="card"><h3>דוח אוטומטי</h3><div class="role">דו-שבועי: MER + מדדים מובילים → החלטות תקציב.</div></div>
-    <div class="card"><h3>A/B</h3><div class="role">רק על מדדים מובילים (נפח מכירות נמוך למובהקות על מכירות עצמן).</div></div>
+    <div class="card"><h3>A/B</h3><div class="role">רק על מדדים מובילים (נפח נמוך למובהקות על מכירות).</div></div>
   </div>
 </section>
 
-<!-- 12. GANTT -->
-<section id="gantt">
-  <h2 class="sec"><span class="n">12</span> גאנט שיווקי · יוני–דצמבר 2026</h2>
-  <p class="note">עמודת יוני = <b>ספרינט הכנה</b>. הדגל האדום = העלייה לאוויר ב-1.7.</p>
-  <div class="gantt">
-    <div class="gtable">
-      <div class="head lbl">פס עבודה</div>
-      <div class="head">יוני<br><small>(הכנה)</small></div>
-      <div class="head">יולי</div><div class="head">אוגוסט</div><div class="head">ספטמבר</div>
-      <div class="head">אוקטובר</div><div class="head">נובמבר</div><div class="head">דצמבר</div>
-
-      <div class="lane">הקמה & חיבורי API</div>
-      <div class="gcell"><div class="bar2 b-ink">6 connectors + State</div></div>
-      <div class="gcell"></div><div class="gcell"></div><div class="gcell"></div><div class="gcell"></div><div class="gcell"></div><div class="gcell"></div>
-
-      <div class="lane">מנוע תוכן (מחקר→וריאציות)</div>
-      <div class="gcell"><div class="bar2 b-gold">בנייה v1</div></div>
-      <div class="gcell" style="grid-column:3 / span 6;"><div class="bar2 b-ok">הפקה שוטפת · סטילס → וידאו → אווטרים</div></div>
-
-      <div class="lane">תוכן & SEO (מאמרים)</div>
-      <div class="gcell"><div class="bar2 b-gold">2–3 מאמרים draft</div></div>
-      <div class="gcell" style="grid-column:3 / span 6;"><div class="bar2 b-ok">פרסום שוטף · אופטימיזציה לפי GSC</div></div>
-
-      <div class="lane">Klaviyo: flows + ניוזלטר</div>
-      <div class="gcell"><div class="bar2 b-gold">הפעלת flows + טמפלט</div></div>
-      <div class="gcell" style="grid-column:3 / span 6;"><div class="bar2 b-ok">ניוזלטר דו-שבועי + flows חיים</div></div>
-
-      <div class="lane">ממומן: Search + רימרקטינג</div>
-      <div class="gcell"><div class="bar2 b-soft">בניית חשבון (מושהה)</div></div>
-      <div class="gcell" style="grid-column:3 / span 2;"><div class="bar2 b-warn">Search + רימרקטינג חי</div></div>
-      <div class="gcell" style="grid-column:5 / span 4;"><div class="bar2 b-warn">+ Meta · A/B · הגדלה לפי MER</div></div>
-
-      <div class="lane">Lead-Response + Voice</div>
-      <div class="gcell"><div class="bar2 b-soft">WhatsApp prod + triggers</div></div>
-      <div class="gcell" style="grid-column:3 / span 6;"><div class="bar2 b-ok">תגובה מיידית · voice agent בהמשך</div></div>
-
-      <div class="lane">רשתות: IG / Pinterest / FB</div>
-      <div class="gcell"><div class="bar2 b-soft">Brand Kit + תכנון</div></div>
-      <div class="gcell" style="grid-column:3 / span 6;"><div class="bar2 b-ok">פוסטים שוטפים · עוגן לקולקציה</div></div>
-
-      <div class="lane">קולקציה חדשה</div>
-      <div class="gcell"></div>
-      <div class="gcell"><div class="bar2 b-gold">Teaser</div></div>
-      <div class="gcell"><div class="bar2 b-warn">★ DROP</div></div>
-      <div class="gcell" style="grid-column:5 / span 4;"><div class="bar2 b-soft">דחיפה מתמשכת</div></div>
-
-      <div class="lane">עוגני עונה (US)</div>
-      <div class="gcell"></div>
-      <div class="gcell" style="grid-column:3 / span 3;"><div class="bar2 b-ink">עונת חתונות → טבעות נישואין</div></div>
-      <div class="gcell" style="grid-column:7 / span 1;"><div class="bar2 b-warn">BFCM</div></div>
-      <div class="gcell"><div class="bar2 b-warn">חג המולד</div></div>
-
-      <div class="lane">מדידה: דוח MER דו-שבועי</div>
-      <div class="gcell"><div class="bar2 b-soft">הקמת דאשבורד</div></div>
-      <div class="gcell" style="grid-column:3 / span 6;"><div class="bar2 b-ink">דוח אוטומטי + החלטות תקציב</div></div>
-    </div>
+<!-- CHANNELS -->
+<section class="panel" id="channels">
+  <h2 class="sec">מפת ערוצים</h2>
+  <div class="grid">
+    <div class="card"><h3>Google Search + AEO</h3><div class="role">ביקוש קיים + תשובות LLM.</div><span class="tag">ממומן+אורגני</span></div>
+    <div class="card"><h3>רימרקטינג (Google+Meta)</h3><div class="role">המרת קהל חם — לב המודל.</div><span class="tag">ממומן</span></div>
+    <div class="card"><h3>Pinterest</h3><div class="role">כוונת ברידל/אירוסין.</div><span class="tag">אורגני+ממומן</span></div>
+    <div class="card"><h3>Instagram</h3><div class="role">מיתוג · Reels.</div><span class="tag">אורגני</span></div>
+    <div class="card"><h3>Klaviyo Email/SMS</h3><div class="role">נרצ'ר.</div><span class="tag">Owned</span></div>
+    <div class="card"><h3>WhatsApp</h3><div class="role">מכירה + Lead-Response.</div><span class="tag">Owned</span></div>
+    <div class="card"><h3>קידום LLM (GEO)</h3><div class="role">GPT · Claude · Gemini.</div><span class="tag">אורגני</span></div>
+    <div class="card"><h3>Calendly</h3><div class="role">פגישה אישית — בידול טיקט גבוה.</div><span class="tag">המרה</span></div>
+    <div class="card"><h3>בלוג Shopify</h3><div class="role">SEO/AEO סביב Black Ice.</div><span class="tag">אורגני</span></div>
   </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="panel" id="roadmap">
+  <h2 class="sec">תוכנית עבודה</h2>
+  <h3 class="sub">✅ הכרעות שננעלו (23.6)</h3>
+  <div class="conn">
+    <div class="c"><span class="dot d-live"></span><div><b>State</b><span class="s">Supabase הקיים</span></div></div>
+    <div class="c"><span class="dot d-live"></span><div><b>אורקסטרטור</b><span class="s">cloud routine</span></div></div>
+    <div class="c"><span class="dot d-live"></span><div><b>Budget</b><span class="s">שמרני (shadow)</span></div></div>
+    <div class="c"><span class="dot d-live"></span><div><b>סוכן תוכן</b><span class="s">orchestrator + מומחים</span></div></div>
+    <div class="c"><span class="dot d-part"></span><div><b>Voice agent</b><span class="s">נדחה</span></div></div>
+    <div class="c"><span class="dot d-part"></span><div><b>Multi-tenant</b><span class="s">נדחה לסוף</span></div></div>
+  </div>
+  <h3 class="sub">5 שלבי בנייה</h3>
+  <div class="pstage"><div class="bar"><span class="idx">1</span><span class="ttl">Foundation</span><span class="kpi" style="background:#c0392b;border-color:#c0392b;color:#fff;">▶ הבא</span></div><div class="body"><p class="goal-line">State ב-Supabase + שלד אורקסטרטור + הזרמת נתונים קיימים. <b>אבל קודם: מסיימים את האיפיון.</b></p></div></div>
+  <div class="pstage"><div class="bar"><span class="idx">2</span><span class="ttl">שכבת כתיבה למדיה</span></div><div class="body"><p class="goal-line">ads_management + Budget Reallocator בסיסי.</p></div></div>
+  <div class="pstage"><div class="bar"><span class="idx">3</span><span class="ttl">סוכן מכירה טקסטואלי</span></div><div class="body"><p class="goal-line">WhatsApp prod + triggers + עוגנים פסיכולוגיים.</p></div></div>
+  <div class="pstage"><div class="bar"><span class="idx">4</span><span class="ttl">מנוע תוכן</span></div><div class="body"><p class="goal-line">orchestrator + מומחים. סטילס → וידאו → אווטרים.</p></div></div>
+  <div class="pstage"><div class="bar"><span class="idx">5</span><span class="ttl">אופטימיזציה + דוח</span></div><div class="body"><p class="goal-line">A/B + דוח MER דו-שבועי.</p></div></div>
+  <div class="ph" style="margin-top:12px;">🎯 <b>עכשיו:</b> ממשיכים את לולאת האיפיון — שלב 2 (מצב 0) הושלם חלקית; הבאים: נתונים · כרטיס לקוח · פאנלים · מנוע תוכן (כבד) · ניהול אתר. Klaviyo flows = quick-win זמין במקביל.</div>
+</section>
+
+<!-- GANTT -->
+<section class="panel" id="gantt">
+  <h2 class="sec">גאנט שיווקי · יוני–דצמבר 2026</h2>
+  <div class="gantt"><div class="gtable">
+    <div class="head lbl">פס עבודה</div>
+    <div class="head">יוני</div><div class="head">יולי</div><div class="head">אוגוסט</div><div class="head">ספטמבר</div><div class="head">אוקטובר</div><div class="head">נובמבר</div><div class="head">דצמבר</div>
+    <div class="lane">הקמה + State</div><div class="gcell"><div class="bar2 b-ink">connectors + State</div></div><div class="gcell"></div><div class="gcell"></div><div class="gcell"></div><div class="gcell"></div><div class="gcell"></div><div class="gcell"></div>
+    <div class="lane">מנוע תוכן</div><div class="gcell"><div class="bar2 b-gold">בנייה v1</div></div><div class="gcell" style="grid-column:3 / span 6;"><div class="bar2 b-ok">הפקה שוטפת · סטילס→וידאו→אווטרים</div></div>
+    <div class="lane">Klaviyo flows</div><div class="gcell"><div class="bar2 b-gold">הפעלה</div></div><div class="gcell" style="grid-column:3 / span 6;"><div class="bar2 b-ok">flows חיים + ניוזלטר</div></div>
+    <div class="lane">ממומן</div><div class="gcell"><div class="bar2 b-soft">חשבון (מושהה)</div></div><div class="gcell" style="grid-column:3 / span 2;"><div class="bar2 b-warn">Search+רימרקטינג</div></div><div class="gcell" style="grid-column:5 / span 4;"><div class="bar2 b-warn">+Meta · הגדלה לפי MER</div></div>
+    <div class="lane">סוכן מכירה</div><div class="gcell"><div class="bar2 b-soft">WhatsApp prod</div></div><div class="gcell" style="grid-column:3 / span 6;"><div class="bar2 b-ok">תקשורת שוטפת</div></div>
+    <div class="lane">קולקציה חדשה</div><div class="gcell"></div><div class="gcell"><div class="bar2 b-gold">Teaser</div></div><div class="gcell"><div class="bar2 b-warn">★ DROP</div></div><div class="gcell" style="grid-column:5 / span 4;"><div class="bar2 b-soft">דחיפה</div></div>
+    <div class="lane">מדידה MER</div><div class="gcell"><div class="bar2 b-soft">דאשבורד</div></div><div class="gcell" style="grid-column:3 / span 6;"><div class="bar2 b-ink">דוח דו-שבועי</div></div>
+  </div></div>
   <div style="margin-top:10px;"><span class="play">🚩 PLAY = 1.7.2026</span></div>
   <div class="legend">
-    <span><i class="sw" style="background:#1c1c20;"></i> תשתית/קבוע</span>
-    <span><i class="sw" style="background:#9c7634;"></i> הכנה חד-פעמית</span>
-    <span><i class="sw" style="background:#a85f23;"></i> ממומן/שיא</span>
-    <span><i class="sw" style="background:#3f7d52;"></i> פעילות שוטפת</span>
-    <span><i class="sw" style="background:#efe6d2;border:1px dashed #b8924a;"></i> חוזר/תכנון</span>
+    <span><i class="sw" style="background:#1c1c20;"></i> תשתית</span><span><i class="sw" style="background:#9c7634;"></i> הכנה</span><span><i class="sw" style="background:#a85f23;"></i> ממומן</span><span><i class="sw" style="background:#3f7d52;"></i> שוטף</span><span><i class="sw" style="background:#efe6d2;border:1px dashed #b8924a;"></i> תכנון</span>
   </div>
 </section>
 
-<!-- 13. NEWSLETTER -->
-<section id="news">
-  <h2 class="sec"><span class="n">13</span> רוטציית ניוזלטר (כל שבועיים)</h2>
+<!-- NEWSLETTER -->
+<section class="panel" id="news">
+  <h2 class="sec">רוטציית ניוזלטר (כל שבועיים)</h2>
   <div class="rot">
-    <div class="step"><b>שבוע 1–2</b><br>מאמר / סיפור מותג (Black Ice, תדרים, אנרגיה)</div>
+    <div class="step"><b>שבוע 1–2</b><br>מאמר / סיפור מותג (Black Ice, תדרים)</div>
     <div class="step"><b>שבוע 3–4</b><br>מוצר / קולקציה חדשה</div>
-    <div class="step"><b>שבוע 5–6</b><br>ביקורות אחרונות · הוכחה חברתית</div>
-    <div class="step"><b>שבוע 7–8</b><br>חידושים / הזמנה לפגישה אישית</div>
+    <div class="step"><b>שבוע 5–6</b><br>ביקורות · הוכחה חברתית</div>
+    <div class="step"><b>שבוע 7–8</b><br>חידושים / הזמנה לפגישה</div>
   </div>
-  <p class="note">לפני מועד חשוב (ולנטיין, BFCM, חג המולד) — הרוטציה נדרסת לטובת מסר עונתי + רמפה מוקדמת.</p>
+  <p class="note">לפני מועד חשוב (ולנטיין, BFCM, חג המולד) — הרוטציה נדרסת למסר עונתי.</p>
 </section>
 
-<!-- 14. METHOD -->
-<section id="method">
-  <h2 class="sec"><span class="n">14</span> מתודולוגיית עבודה — ריטואל</h2>
-  <div class="grid">
-    <div class="card"><h3>תחילת חודש</h3><div class="role">סקירת MER + מדדים מובילים → החלטות הזזת תקציב.</div></div>
-    <div class="card"><h3>אמצע חודש</h3><div class="role">תזמון ניוזלטרים/פוסטים/מאמרים · מעבר על כל הקריאייטיב.</div></div>
-    <div class="card"><h3>חודשי</h3><div class="role">רענון מחקר מילים/AEO · רענון קהלי רימרקטינג · הכרעת A/B.</div></div>
-    <div class="card"><h3>אוטונומיה</h3><div class="role">shadow-then-own: שלב A אישור על כל פעולה → שלב B אוטונומי בגבולות → שלב C אוטונומי מלא + דוח. שיווק יוצא תמיד opt-in + טמפלט מאושר.</div></div>
-  </div>
-</section>
-
-<!-- 15. CONNECTORS -->
-<section id="conn">
-  <h2 class="sec"><span class="n">15</span> מצב החיבורים</h2>
+<!-- CONNECTORS -->
+<section class="panel" id="conn">
+  <h2 class="sec">מצב חיבורים</h2>
   <div class="conn">
-    <div class="c"><span class="dot d-live"></span><div><b>Google Search Console</b><span class="s">LIVE · מילות חיפוש + AEO</span></div></div>
-    <div class="c"><span class="dot d-live"></span><div><b>Google Ads</b><span class="s">LIVE (read) · קושר ל-MCC</span></div></div>
-    <div class="c"><span class="dot d-live"></span><div><b>Meta Ads</b><span class="s">LIVE (read) · 57 קמפיינים</span></div></div>
-    <div class="c"><span class="dot d-live"></span><div><b>Klaviyo</b><span class="s">LIVE (read) · 45 flows / 0 חיים</span></div></div>
-    <div class="c"><span class="dot d-part"></span><div><b>WhatsApp (Meta Cloud)</b><span class="s">test number OK · production נשאר</span></div></div>
-    <div class="c"><span class="dot d-part"></span><div><b>Google Reviews</b><span class="s">scaffolding · ממתין לאישור Google</span></div></div>
-    <div class="c"><span class="dot d-live"></span><div><b>Shopify</b><span class="s">MCP מחובר</span></div></div>
-    <div class="c"><span class="dot d-live"></span><div><b>Calendly · Canva</b><span class="s">MCP מחובר</span></div></div>
-    <div class="c"><span class="dot d-todo"></span><div><b>GA4</b><span class="s">לחבר (מעקב התנהגות)</span></div></div>
-    <div class="c"><span class="dot d-todo"></span><div><b>Voice agent (OpenClaw?)</b><span class="s">לבחור כלי</span></div></div>
-    <div class="c"><span class="dot d-todo"></span><div><b>State store</b><span class="s">Supabase / Klaviyo CDP — להכריע</span></div></div>
-    <div class="c"><span class="dot d-todo"></span><div><b>שכבת כתיבה למדיה</b><span class="s">ads_management / mutations</span></div></div>
+    <div class="c"><span class="dot d-live"></span><div><b>Google Search Console</b><span class="s">LIVE</span></div></div>
+    <div class="c"><span class="dot d-live"></span><div><b>Google Ads</b><span class="s">LIVE (read)</span></div></div>
+    <div class="c"><span class="dot d-live"></span><div><b>Meta Ads</b><span class="s">LIVE (read)</span></div></div>
+    <div class="c"><span class="dot d-live"></span><div><b>Klaviyo</b><span class="s">LIVE (read) · 0/45 flows</span></div></div>
+    <div class="c"><span class="dot d-part"></span><div><b>WhatsApp</b><span class="s">test OK · prod נשאר</span></div></div>
+    <div class="c"><span class="dot d-part"></span><div><b>Google Reviews</b><span class="s">ממתין לאישור</span></div></div>
+    <div class="c"><span class="dot d-live"></span><div><b>Shopify · Calendly · Canva</b><span class="s">MCP</span></div></div>
+    <div class="c"><span class="dot d-todo"></span><div><b>GA4</b><span class="s">לחבר</span></div></div>
+    <div class="c"><span class="dot d-todo"></span><div><b>Meta Ad Library</b><span class="s">למחקר מתחרים</span></div></div>
+    <div class="c"><span class="dot d-todo"></span><div><b>State store</b><span class="s">Supabase — לבנות סכמה</span></div></div>
+    <div class="c"><span class="dot d-todo"></span><div><b>כתיבה למדיה</b><span class="s">ads_management</span></div></div>
   </div>
   <div class="legend"><span><i class="sw" style="background:#3f7d52;border-radius:50%;width:11px;height:11px;"></i> LIVE</span><span><i class="sw" style="background:#b8924a;border-radius:50%;width:11px;height:11px;"></i> חלקי</span><span><i class="sw" style="background:#bbb;border-radius:50%;width:11px;height:11px;"></i> לבנות</span></div>
+  <p class="note" style="margin-top:20px;">Diana Rafael — Autonomous Growth Engine · Master Doc v3 · עודכן 23.6.2026 · מסמך עבודה חי. ✓=איפיון סגור · ◐=באיפיון.</p>
 </section>
 
-<!-- 16. ROADMAP -->
-<section id="next">
-  <h2 class="sec"><span class="n">16</span> תוכנית עבודה (Roadmap)</h2>
-
-  <h3 class="sub">✅ הכרעות אדריכליות שננעלו (23.6.2026)</h3>
-  <div class="conn">
-    <div class="c"><span class="dot d-live"></span><div><b>מקור אמת (State)</b><span class="s">Supabase הקיים — מוסיפים טבלאות שיווק</span></div></div>
-    <div class="c"><span class="dot d-live"></span><div><b>אורקסטרטור</b><span class="s">cloud routine (כמו order-intake)</span></div></div>
-    <div class="c"><span class="dot d-live"></span><div><b>Budget Reallocator</b><span class="s">שמרני — מציע, דניאל מאשר (shadow)</span></div></div>
-    <div class="c"><span class="dot d-live"></span><div><b>סוכן תוכן</b><span class="s">נפרד מסוכן השיווק</span></div></div>
-    <div class="c"><span class="dot d-part"></span><div><b>Voice agent</b><span class="s">נדחה — טקסטואלי קודם</span></div></div>
-    <div class="c"><span class="dot d-part"></span><div><b>Multi-tenant</b><span class="s">נדחה — מוכיחים על Diana Rafael קודם</span></div></div>
-  </div>
-
-  <h3 class="sub">5 שלבי בנייה</h3>
-  <div class="stages">
-    <div class="pstage">
-      <div class="bar"><span class="idx">1</span><span class="ttl">Foundation</span><span class="kpi" style="background:#c0392b;border-color:#c0392b;color:#fff;">▶ מתחילים כאן</span></div>
-      <div class="body"><p class="goal-line"><b>State store ב-Supabase</b> (כרטיסי לקוח · KPIs · תקציבים · ניסויים · נכסי תוכן) + שלד אורקסטרטור + הזרמת הנתונים הקיימים (Shopify · Klaviyo · Google/Meta read) פנימה. <b>הבא המיידי:</b> אפיון סכמת ה-State.</p></div>
-    </div>
-    <div class="pstage">
-      <div class="bar"><span class="idx">2</span><span class="ttl">שכבת כתיבה למדיה</span><span class="kpi">ערך: כל $ שווה יותר</span></div>
-      <div class="body"><p class="goal-line">ads_management (Google/Meta write) + Budget Reallocator בסיסי (חוק סף MER, shadow).</p></div>
-    </div>
-    <div class="pstage">
-      <div class="bar"><span class="idx">3</span><span class="ttl">Lead-Response טקסטואלי</span><span class="kpi">ערך: ביטול צוואר הבקבוק</span></div>
-      <div class="body"><p class="goal-line">WhatsApp production + triggers (תגובה בשניות) · SMS · Email. Voice agent נדחה.</p></div>
-    </div>
-    <div class="pstage">
-      <div class="bar"><span class="idx">4</span><span class="ttl">מנוע תוכן</span><span class="kpi">ערך: מזין את כל החשיפה</span></div>
-      <div class="body"><p class="goal-line">סוכן תוכן נפרד: סטילס ממותג → וידאו → אווטרים/UGC. מתחבר ל-CustomizeAI + Canva.</p></div>
-    </div>
-    <div class="pstage">
-      <div class="bar"><span class="idx">5</span><span class="ttl">אופטימיזציה + דוח</span><span class="kpi">ערך: שיפור עצמי</span></div>
-      <div class="body"><p class="goal-line">A/B מתמשך על מדדים מובילים + דוח MER דו-שבועי אוטומטי + החלטות תקציב.</p></div>
-    </div>
-  </div>
-  <p class="note" style="margin-top:10px;"><b>הערה:</b> הפעלת Klaviyo flows (0/45 חיים) נשארת quick-win זמין במקביל לכל שלב — אפס תלות אדריכלית.</p>
-  <div class="ph" style="margin-top:14px;">🎯 <b>הצעד הבא:</b> אפיון סכמת ה-State ב-Supabase (טבלאות שיווק: leads / kpis / budgets / experiments / content) — בסיס לכל מה שמעליו.</div>
-</section>
-
-<footer>
-  Diana Rafael — Autonomous Growth Engine · Master Blueprint v2 · עודכן 23.6.2026 · מסמך עבודה חי — מתעדכן עם כל החלטה/הרחבה בהקשר סוכן השיווק. עיצוב פנימי, טרם מבוסס על הפלטה הסופית.
-</footer>
-
+</main>
 </div>
+
+<script>
+  var links=document.querySelectorAll('.sidebar a.nav');
+  var panels=document.querySelectorAll('.panel');
+  function show(id){
+    for(var i=0;i<panels.length;i++){panels[i].classList.toggle('active',panels[i].id===id);}
+    for(var j=0;j<links.length;j++){links[j].classList.toggle('active',links[j].getAttribute('data-t')===id);}
+    window.scrollTo(0,0);
+    if(history.replaceState){history.replaceState(null,'','#'+id);}
+  }
+  for(var k=0;k<links.length;k++){
+    (function(a){a.addEventListener('click',function(e){e.preventDefault();show(a.getAttribute('data-t'));});})(links[k]);
+  }
+  var start=(location.hash||'#vision').substring(1);
+  if(!document.getElementById(start)){start='vision';}
+  show(start);
+</script>
 </body>
 </html>
