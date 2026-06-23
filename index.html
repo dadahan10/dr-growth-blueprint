@@ -582,17 +582,45 @@
   <div class="legend"><span><i class="sw" style="background:#3f7d52;border-radius:50%;width:11px;height:11px;"></i> LIVE</span><span><i class="sw" style="background:#b8924a;border-radius:50%;width:11px;height:11px;"></i> חלקי</span><span><i class="sw" style="background:#bbb;border-radius:50%;width:11px;height:11px;"></i> לבנות</span></div>
 </section>
 
-<!-- 16. NEXT -->
+<!-- 16. ROADMAP -->
 <section id="next">
-  <h2 class="sec"><span class="n">16</span> החלטות פתוחות + מה הבא</h2>
-  <p class="note">6 פורקים אדריכליים שצריך להכריע לפני בנייה (מתוך SPEC-autonomous-funnel.md):</p>
-  <div class="open"><b>1.</b> איפה רץ האורקסטרטור? — cloud routine / שרת ייעודי / Make.</div>
-  <div class="open"><b>2.</b> Budget Reallocator — כמה אגרסיבי? סף, תדירות, תקרת-העברה אוטומטית.</div>
-  <div class="open"><b>3.</b> Voice agent (טלפון) — עכשיו או שלב מתקדם? בחירת כלי (OpenClaw?).</div>
-  <div class="open"><b>4.</b> סוכן תוכן — נפרד או חלק מהשיווק? (נטייה: נפרד.)</div>
-  <div class="open"><b>5.</b> Multi-tenant — מתי? generic מההתחלה (יקר) או single-tenant ואז להפשיט.</div>
-  <div class="open"><b>6.</b> מקור האמת ל-state — Supabase קיים / DB חדש / Klaviyo כ-CDP.</div>
-  <div class="ph" style="margin-top:14px;">🎯 <b>הבא:</b> דניאל ממשיך לרשום את החזון (השלמות) → אני מעדכן את המסמך הזה שוטף → מכריעים את 6 הפורקים → סדר בנייה (State+אורקסטרטור → כתיבה למדיה → Lead-Response → מנוע תוכן → אופטימיזציה).</div>
+  <h2 class="sec"><span class="n">16</span> תוכנית עבודה (Roadmap)</h2>
+
+  <h3 class="sub">✅ הכרעות אדריכליות שננעלו (23.6.2026)</h3>
+  <div class="conn">
+    <div class="c"><span class="dot d-live"></span><div><b>מקור אמת (State)</b><span class="s">Supabase הקיים — מוסיפים טבלאות שיווק</span></div></div>
+    <div class="c"><span class="dot d-live"></span><div><b>אורקסטרטור</b><span class="s">cloud routine (כמו order-intake)</span></div></div>
+    <div class="c"><span class="dot d-live"></span><div><b>Budget Reallocator</b><span class="s">שמרני — מציע, דניאל מאשר (shadow)</span></div></div>
+    <div class="c"><span class="dot d-live"></span><div><b>סוכן תוכן</b><span class="s">נפרד מסוכן השיווק</span></div></div>
+    <div class="c"><span class="dot d-part"></span><div><b>Voice agent</b><span class="s">נדחה — טקסטואלי קודם</span></div></div>
+    <div class="c"><span class="dot d-part"></span><div><b>Multi-tenant</b><span class="s">נדחה — מוכיחים על Diana Rafael קודם</span></div></div>
+  </div>
+
+  <h3 class="sub">5 שלבי בנייה</h3>
+  <div class="stages">
+    <div class="pstage">
+      <div class="bar"><span class="idx">1</span><span class="ttl">Foundation</span><span class="kpi" style="background:#c0392b;border-color:#c0392b;color:#fff;">▶ מתחילים כאן</span></div>
+      <div class="body"><p class="goal-line"><b>State store ב-Supabase</b> (כרטיסי לקוח · KPIs · תקציבים · ניסויים · נכסי תוכן) + שלד אורקסטרטור + הזרמת הנתונים הקיימים (Shopify · Klaviyo · Google/Meta read) פנימה. <b>הבא המיידי:</b> אפיון סכמת ה-State.</p></div>
+    </div>
+    <div class="pstage">
+      <div class="bar"><span class="idx">2</span><span class="ttl">שכבת כתיבה למדיה</span><span class="kpi">ערך: כל $ שווה יותר</span></div>
+      <div class="body"><p class="goal-line">ads_management (Google/Meta write) + Budget Reallocator בסיסי (חוק סף MER, shadow).</p></div>
+    </div>
+    <div class="pstage">
+      <div class="bar"><span class="idx">3</span><span class="ttl">Lead-Response טקסטואלי</span><span class="kpi">ערך: ביטול צוואר הבקבוק</span></div>
+      <div class="body"><p class="goal-line">WhatsApp production + triggers (תגובה בשניות) · SMS · Email. Voice agent נדחה.</p></div>
+    </div>
+    <div class="pstage">
+      <div class="bar"><span class="idx">4</span><span class="ttl">מנוע תוכן</span><span class="kpi">ערך: מזין את כל החשיפה</span></div>
+      <div class="body"><p class="goal-line">סוכן תוכן נפרד: סטילס ממותג → וידאו → אווטרים/UGC. מתחבר ל-CustomizeAI + Canva.</p></div>
+    </div>
+    <div class="pstage">
+      <div class="bar"><span class="idx">5</span><span class="ttl">אופטימיזציה + דוח</span><span class="kpi">ערך: שיפור עצמי</span></div>
+      <div class="body"><p class="goal-line">A/B מתמשך על מדדים מובילים + דוח MER דו-שבועי אוטומטי + החלטות תקציב.</p></div>
+    </div>
+  </div>
+  <p class="note" style="margin-top:10px;"><b>הערה:</b> הפעלת Klaviyo flows (0/45 חיים) נשארת quick-win זמין במקביל לכל שלב — אפס תלות אדריכלית.</p>
+  <div class="ph" style="margin-top:14px;">🎯 <b>הצעד הבא:</b> אפיון סכמת ה-State ב-Supabase (טבלאות שיווק: leads / kpis / budgets / experiments / content) — בסיס לכל מה שמעליו.</div>
 </section>
 
 <footer>
